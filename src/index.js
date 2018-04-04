@@ -4,13 +4,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 // REDUX
-import toolsApp from './reducers'
+import toolsApp from './reducers/rootReducer'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { addTool,
-         setVisibilitySort,
-         setVisibilityFilter
-} from './actions'
 // COMPONENTS
 import App from './App';
 // STYLING

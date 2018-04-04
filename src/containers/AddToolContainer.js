@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { addTool, addTags } from '../actions.js'
+
+
+import { addTags } from '../actions/tagsActions'
+import { addTool } from '../actions/toolsActions'
 import { Form } from 'semantic-ui-react'
 import TagInput from '../components/TagInput'
-import loader from '../HOCs/loader'
+import { loader } from '../HOCs/loader'
 
 class AddToolContainer extends Component {
   state = {
@@ -76,4 +79,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default loader(connect(null, mapDispatchToProps)(AddToolContainer));
+export default connect(null, mapDispatchToProps)(loader(AddToolContainer));

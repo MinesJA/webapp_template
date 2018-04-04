@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 // REDUX
 import { connect } from 'react-redux'
-import { addTool } from './actions.js'
 // COMPONENTS
 import NavBar from './components/NavBar'
 import HomeContainer from './containers/HomeContainer'
@@ -12,8 +11,9 @@ import MyToolsContainer from './containers/MyToolsContainer'
 // STYLING
 import './App.css';
 
-class App extends Component {
 
+
+class App extends Component {
   render() {
     return (
       <div>
