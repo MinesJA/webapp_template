@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Header } from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addTags } from '../actions.js'
+import { addTags } from '../actions/tagsActions'
 
 class TagInput extends Component {
   state = {

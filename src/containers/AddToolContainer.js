@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
-
 import { addTags } from '../actions/tagsActions'
 import { addTool } from '../actions/toolsActions'
-import { Form } from 'semantic-ui-react'
 import TagInput from '../components/TagInput'
 import { loader } from '../HOCs/loader'
+import { Form } from 'semantic-ui-react'
 
 class AddToolContainer extends Component {
   state = {

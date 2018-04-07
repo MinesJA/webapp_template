@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addSearchTerm } from '../actions.js'
+import { addSearchTerm } from '../actions/searchActions'
 
 const SearchBar = () => (
 

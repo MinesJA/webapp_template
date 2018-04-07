@@ -1,6 +1,6 @@
 export const ADD_USER = 'ADD_USER'
 export const LOADING = 'LOADING'
-export const LOAD_RESOURCES = 'LOAD_RESOURCES'
+export const LOAD_USERS = 'LOAD_USERS'
 
 
 export function fetchUsers(){
@@ -17,7 +17,7 @@ export function fetchUsers(){
       // When do I set loading back to false?
       dispatch({
       type: LOAD_USERS,
-      payload
+      payload: result
       })
     })
   }

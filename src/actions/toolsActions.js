@@ -10,12 +10,17 @@ export function fetchTools(){
       type: LOADING
     })
 
-    return fetch('http://localhost:3090/api/v1/tools')
+    return fetch('http://localhost:3000/api/v1/tools')
     .then(resp => resp.json())
     .then(result => {
-
-      debugger;
       // When do I set loading back to false?
+
+
+
+      let payload = result.data.map((obj)=>{ return Object.assign(
+        {}, {id: obj.id}, obj.attributes ) } )
+
+      
       dispatch({
       type: LOAD_TOOLS,
       payload
@@ -40,7 +45,7 @@ export function addTool(tool){
   }
 
   return (dispatch) => {
-    return fetch(`http://localhost:3090/api/v1/tools/${tool.id}`, options)
+    return fetch(`http://localhost:3000/api/v1/tools/${tool.id}`, options)
     .then(resp => resp.json())
     .then(result => {
       dispatch({

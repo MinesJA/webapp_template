@@ -1,12 +1,13 @@
 // REACT
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 // REDUX
 import toolsApp from './reducers/rootReducer'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 // COMPONENTS
 import App from './App';
 // STYLING
@@ -14,12 +15,12 @@ import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 
 
-
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 
 const store = createStore(
-   toolsApp, /* preloadedState, */
-   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+   toolsApp, applyMiddleware(thunk)
+
   );
 
 console.log("CURRENT STATE: ", store.getState())

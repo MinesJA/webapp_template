@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import { Route, Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class NavBar extends Component {
   state = { activeItem: 'home' }
@@ -9,7 +8,6 @@ class NavBar extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { color } = this.props
     const { activeItem } = this.state
 
     return (

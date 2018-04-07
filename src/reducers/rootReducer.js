@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import Users from './usersReducers'
-import Tool from './toolsReducers'
+import Tools from './toolsReducers'
 import Tags from './tagsReducers'
 
 

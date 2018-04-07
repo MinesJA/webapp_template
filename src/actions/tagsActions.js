@@ -1,6 +1,6 @@
 export const ADD_TAGS = 'ADD_TAG'
 export const LOADING = 'LOADING'
-export const LOAD_RESOURCES = 'LOAD_RESOURCES'
+export const LOAD_TAGS = 'LOAD_TAGS'
 
 
 export function fetchTags(){
@@ -17,7 +17,7 @@ export function fetchTags(){
       // When do I set loading back to false?
       dispatch({
       type: LOAD_TAGS,
-      payload
+      payload: result
       })
     })
   }

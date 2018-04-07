@@ -11,7 +11,7 @@ export default function Tags(state = {loading: false, tags: []}, action){
       return Object.assign({}, state, {tags: [...state].concat(action.payload)})
 
     case LOAD_TAGS:
-      return
+      return Object.assign({}, state, {tags: [action.payload]})
 
     default:
       return {...state}
