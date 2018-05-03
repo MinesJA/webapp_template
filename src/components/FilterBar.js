@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addFilterTags } from '../actions/searchActions'
-
+import loader from '../HOCs/loader'
 
 class FilterBar extends Component{
   state = {
@@ -16,7 +16,7 @@ class FilterBar extends Component{
   renderOptions = () => {
     // takes an array of tags as strings from store and turns into objects
     return this.props.tags.map((tag)=>{
-      let newTag = tag.replace(/ /g,"_");
+      let newTag = tag.name.replace(/ /g,"_");
       return {"key": tag, "text": tag, "value": newTag}
     })
   }
@@ -52,4 +52,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterBar)
+export default connect(mapStateToProps, mapDispatchToProps)(loader(FilterBar))

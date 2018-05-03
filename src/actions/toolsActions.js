@@ -1,36 +1,38 @@
 export const ADD_TOOL = 'ADD_TOOL'
 export const SELECT_TOOL = 'SELECT_TOOL'
-export const LOADING = 'LOADING'
+export const TOOLS_LOADING = 'TOOLS_LOADING'
 export const LOAD_TOOLS = 'LOAD_TOOLS'
 
 
 export function fetchTools(){
   return (dispatch) => {
+
     dispatch({
-      type: LOADING
+      type: TOOLS_LOADING
     })
 
     return fetch('http://localhost:3000/api/v1/tools')
     .then(resp => resp.json())
     .then(result => {
-      // When do I set loading back to false?
-
-
-
-      let payload = result.data.map((obj)=>{ return Object.assign(
-        {}, {id: obj.id}, obj.attributes ) } )
-
       
       dispatch({
-      type: LOAD_TOOLS,
-      payload
+        type: LOAD_TOOLS,
+        payload: result
       })
+
     })
   }
 }
 
+export function loadTools(payload){
+  return {
+    type: LOAD_TOOLS,
+    payload
+  }
+}
+
 export function addTool(tool){
-  let options ={
+  let options = {
     method: "PATCH",
     headers:
       {Accept: 'application/json',
@@ -48,27 +50,22 @@ export function addTool(tool){
     return fetch(`http://localhost:3000/api/v1/tools/${tool.id}`, options)
     .then(resp => resp.json())
     .then(result => {
+
       dispatch({
         type: 'ADD_TOOL',
         payload: result
       })
+
     })
   }
-
 }
 
-export function setLoading(){
+export function toolsLoading(){
   return {
-    type: LOADING
+    type: TOOLS_LOADING
   }
 }
 
-// export function addTool(tool){
-//   return {
-//     type: ADD_TOOL,
-//     payload: tool
-//   }
-// }
 
 export function selectTool(tool){
   return {

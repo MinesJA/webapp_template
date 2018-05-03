@@ -14,12 +14,12 @@ import './App.css';
 
 
 
+
 class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
-        <AddToolContainer beef="dude"/>
         <Route path="/" exact component={HomeContainer} />
         <Route path="/tools/new" exact component={AddToolContainer} render />
         <Route path="/users/${id}/tools" exact component={MyToolsContainer} render />

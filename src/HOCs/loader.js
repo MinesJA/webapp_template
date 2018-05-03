@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export function loader(component){
-  return class BeefComponent extends React.Component{
+export default function loader(component){
+  
+  return class LoadingComponent extends Component{
+
     render(){
       const Component = component
-      return ( this.props.loaded ? <Component {...this.props}/> : <div>Loading</div> )
+      return (
+        this.props.loading ? <div>Loading</div> : <Component {...this.props}/>
+      )
     }
   }
 }

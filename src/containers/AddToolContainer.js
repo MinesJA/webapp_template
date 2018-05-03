@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addTags } from '../actions/tagsActions'
 import { addTool } from '../actions/toolsActions'
 import TagInput from '../components/TagInput'
-import { loader } from '../HOCs/loader'
+import loader from '../HOCs/loader'
 import { Form } from 'semantic-ui-react'
 
 class AddToolContainer extends Component {

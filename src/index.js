@@ -8,6 +8,7 @@ import toolsApp from './reducers/rootReducer'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 // COMPONENTS
 import App from './App';
 // STYLING
@@ -15,23 +16,18 @@ import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 
 
-// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
-
 const store = createStore(
-   toolsApp, applyMiddleware(thunk)
-
+   toolsApp, composeWithDevTools(applyMiddleware(thunk))
   );
 
-console.log("CURRENT STATE: ", store.getState())
-
-
 ReactDOM.render(
-  <Provider store={store}>
-    <Router >
-      <App />
-    </Router>
-  </Provider>,
+
+    <Router>
+      <Provider store={store} >
+        <App />
+      </Provider>
+    </Router>,
+
   document.getElementById('root'));
 
 registerServiceWorker();
