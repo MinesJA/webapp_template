@@ -1,29 +1,24 @@
 export const ADD_TOOL = 'ADD_TOOL'
 export const SELECT_TOOL = 'SELECT_TOOL'
-export const LOADING = 'LOADING'
+export const TOOLS_LOADING = 'TOOLS_LOADING'
 export const LOAD_TOOLS = 'LOAD_TOOLS'
 
 
 export function fetchTools(){
   return (dispatch) => {
     dispatch({
-      type: LOADING
+      type: TOOLS_LOADING
     })
 
     return fetch('http://localhost:3000/api/v1/tools')
     .then(resp => resp.json())
     .then(result => {
       // When do I set loading back to false?
+      debugger
 
-
-
-      let payload = result.data.map((obj)=>{ return Object.assign(
-        {}, {id: obj.id}, obj.attributes ) } )
-
-      
       dispatch({
       type: LOAD_TOOLS,
-      payload
+      result
       })
     })
   }
@@ -59,16 +54,9 @@ export function addTool(tool){
 
 export function setLoading(){
   return {
-    type: LOADING
+    type: TOOLS_LOADING
   }
 }
-
-// export function addTool(tool){
-//   return {
-//     type: ADD_TOOL,
-//     payload: tool
-//   }
-// }
 
 export function selectTool(tool){
   return {

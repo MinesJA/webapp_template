@@ -15,7 +15,6 @@ class NavBar extends Component {
         <Menu.Item name='home' as={NavLink} exact to="/" active={activeItem === 'home'} onClick={this.handleItemClick} />
         <Menu.Item name='addTool' as={NavLink} exact to="/tools/new" active={activeItem === 'addTool'} onClick={this.handleItemClick} />
         <Menu.Item name='myTools' as={NavLink} exact to="/users/${id}/tools" active={activeItem === 'myTools'} onClick={this.handleItemClick} />
-
       </Menu>
     )
   }

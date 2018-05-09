@@ -1,46 +1,36 @@
 import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
+import HeaderContainer from './HeaderContainer'
+import BodyContainer from './BodyContainer'
 import { connect } from 'react-redux'
-import { fetchTools } from '../actions/toolsActions.js'
-// COMPONENTS
-import SearchBar from '../components/SearchBar'
-import FilterBar from '../components/FilterBar'
-import Tool from '../components/Tool'
-import ToolDisplay from '../components/ToolDisplay'
-import ToolList from '../components/ToolList'
+import { loader } from '../HOCs/loader'
+import { fetchTags } from '../actions/tagsActions'
+
 
 class HomeContainer extends Component {
 
-  componentDidMount(){
-    this.props.fetchTools()
+  componentDidMount = () => {
+    this.props.fetchTags()
+
   }
 
   render() {
-    console.log(this.props.tools)
     return (
       <div>
-        {this.props.selectedTool ? <ToolDisplay selectedTool={this.props.selectedTool}/> : null}
-        <SearchBar />
-        <FilterBar />
-        <ToolList tools={this.props.tools}/>
+        <HeaderContainer />
+        <BodyContainer />
       </div>
     );
   }
 }
 
-function mapStateToProps(state){
-  return {
-    tools: state.Tools.tools,
-    selectedTool: state.Tools.selectedTool
-  }
-}
-
 function mapDispatchToProps(dispatch){
   return {
-    fetchTools: () => {
-      dispatch(fetchTools())
+    fetchTags: () => {
+      dispatch(fetchTags())
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+
+export default connect(null, mapDispatchToProps)(loader(HomeContainer));

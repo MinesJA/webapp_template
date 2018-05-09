@@ -1,12 +1,12 @@
 export const ADD_USER = 'ADD_USER'
-export const LOADING = 'LOADING'
+export const USERS_LOADING = 'USERS_LOADING'
 export const LOAD_USERS = 'LOAD_USERS'
 
 
 export function fetchUsers(){
   return (dispatch) => {
     dispatch({
-      type: LOADING
+      type: USERS_LOADING
     })
 
     return fetch('http://localhost:3090/api/v1/users')
@@ -49,7 +49,7 @@ export function addUser(user){
 
 export function setLoading(){
   return {
-    type: LOADING
+    type: USERS_LOADING
   }
 }
 

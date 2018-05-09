@@ -1,13 +1,31 @@
-import React from 'react'
-import { Input } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Input, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addSearchTerm } from '../actions/searchActions'
+import TagDropdown from './TagDropdown'
 
-const SearchBar = () => (
 
-  <Input icon='search' placeholder='Search...' onChange={(e)=>{this.props.addSearchTerm(e.target.value)}} />
+class SearchBar extends Component {
+  state = {
+    tags: []
+  }
 
-)
+  setTags = (tags) => {
+    this.setState({
+      tags: tags
+    })
+  }
+
+  render(){
+    return(
+      <div>
+        SEARCH BAR
+        <Input label='I need...' placeholder='Styling tool' onChange={(e)=>{this.props.addSearchTerm(e.target.value)}} />
+        <TagDropdown chosenTags={this.state.tags} allowAdditions={false}/>
+      </div>
+    )
+  }
+}
 
 function mapDispatchToProps(dispatch){
   return {

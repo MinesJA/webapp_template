@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import NavBar from './components/NavBar'
 import HomeContainer from './containers/HomeContainer'
 import AddToolContainer from './containers/AddToolContainer'
-import MyToolsContainer from './containers/MyToolsContainer'
 // STYLING
 import './App.css';
 
@@ -19,11 +18,8 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <AddToolContainer beef="dude"/>
         <Route path="/" exact component={HomeContainer} />
         <Route path="/tools/new" exact component={AddToolContainer} render />
-        <Route path="/users/${id}/tools" exact component={MyToolsContainer} render />
-
       </div>
     );
   }

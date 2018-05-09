@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addTags } from '../actions/tagsActions'
+import { loader } from '../HOCs/loader'
 
-class TagInput extends Component {
+class TagDropdown extends Component {
   state = {
     searchQuery: null
-  }
-
-  componentDidMount(){
-    console.log("TagInput Mounted, incoming tags: ", this.props.tags)
   }
 
   handleChange = (e, { value }) => {
@@ -28,6 +25,7 @@ class TagInput extends Component {
 
   renderOptions = () => {
     // takes an array of tags as strings from store and turns into objects
+
     return this.props.tags.map((tag)=>{
       let newTag = tag.replace(/ /g,"_");
       return {"key": tag, "text": tag, "value": newTag}
@@ -38,7 +36,7 @@ class TagInput extends Component {
     return(
       <Dropdown
         selection
-        allowAdditions={true}
+        allowAdditions={this.props.allowAdditions}
         multiple={true}
         search={true}
         options={this.renderOptions()}
@@ -55,7 +53,8 @@ class TagInput extends Component {
 
 function mapStateToProps(state){
   return {
-    tags: state.tags
+    tags: state.Tags.tags,
+    loading: state.Tags.loading
   }
 }
 
@@ -65,4 +64,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TagInput);
+export default connect(mapStateToProps, mapDispatchToProps)(loader(TagDropdown));

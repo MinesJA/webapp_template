@@ -1,4 +1,4 @@
-export const LOADING = 'LOADING'
+export const SEARCHES_LOADING = 'SEARCHES_LOADING'
 export const ADD_SEARCH_TERM = 'ADD_SEARCH_TERM'
 export const ADD_FILTER_TAGS = 'ADD_FILTER_TAGS'
 
@@ -12,7 +12,7 @@ export function addSearchTerm(searchTerm){
 
 export function setLoading(){
   return {
-    type: LOADING
+    type: SEARCHES_LOADING
   }
 }
 

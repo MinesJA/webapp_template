@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { addTags } from '../actions/tagsActions'
 import { addTool } from '../actions/toolsActions'
-import TagInput from '../components/TagInput'
+import TagDropdown from '../components/TagDropdown'
 import { loader } from '../HOCs/loader'
 import { Form } from 'semantic-ui-react'
 
@@ -29,15 +29,10 @@ class AddToolContainer extends Component {
   }
 
   setTags = (tags) => {
-    console.log("At setTags: ", tags)
     this.setState({
       tags: tags
-    }, ()=>{console.log("State set: ", this.state.tags)})
+    })
   }
-
-
-
-
 
   render() {
     return (
@@ -54,7 +49,7 @@ class AddToolContainer extends Component {
 
 
         <Form.TextArea label='Description of Tool' name='description' placeholder='React.js is super duper...' onChange={this.handleChange} />
-        <TagInput setTags={this.setTags} chosenTags={this.state.tags}/>
+        <TagDropdown setTags={this.setTags} chosenTags={this.state.tags} allowAdditions={true}/>
 
 
         <Form.Button>Submit</Form.Button>
