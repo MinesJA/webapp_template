@@ -12,7 +12,7 @@ class SearchBar extends Component {
 
   setTags = (tags) => {
     this.setState({
-      tags: tags
+      tags
     })
   }
 
@@ -21,7 +21,7 @@ class SearchBar extends Component {
       <div>
         SEARCH BAR
         <Input label='I need...' placeholder='Styling tool' onChange={(e)=>{this.props.addSearchTerm(e.target.value)}} />
-        <TagDropdown chosenTags={this.state.tags} allowAdditions={false}/>
+        <TagDropdown chosenTags={this.state.tags} setTags={this.setTags} allowAdditions={false}/>
       </div>
     )
   }

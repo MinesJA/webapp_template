@@ -1,34 +1,53 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addTags } from '../actions/tagsActions'
+import { addTag } from '../actions/tagsActions'
 import { loader } from '../HOCs/loader'
 
 class TagDropdown extends Component {
   state = {
-    searchQuery: null
+    searchQuery: null,
+    tagOptions: [],
+    selectedTags: [],
+  }
+
+  componentDidMount = () => {
+    fetch('http://localhost:3000/api/v1/tags')
+      .then(resp => resp.json())
+      .then(result => {
+
+        let tagOptions = result.map((tag)=>{
+          return this.formatTagObject(tag.name)
+        })
+
+        this.setState({tagOptions})
+      })
+  }
+
+  formatTagObject = (tagName) => {
+    return {"key": tagName, "text": tagName, "value": tagName.replace(/ /g,"_")}
+  }
+
+  handleAddition = (e, { value }) => {
+    let newTagObject = this.formatTagObject(value)
+
+    this.setState({
+      tagOptions: [...this.state.tagOptions, newTagObject],
+      selectedTags: [...this.state.selectedTags, value],
+    })
+
+    this.props.setTags(this.state.selectedTags)
   }
 
   handleChange = (e, { value }) => {
-    value.map((value)=>{
-      let tag = value.toLowerCase()
-      {!this.props.tags.includes(tag) ? this.props.addTags(tag) : null }
+    this.setState({
+      selectedTags: value
     })
-    this.props.setTags(value)
   }
 
   handleSearchChange = (e, { searchQuery }) => {
     this.setState({
       searchQuery
-    })
-  }
-
-  renderOptions = () => {
-    // takes an array of tags as strings from store and turns into objects
-
-    return this.props.tags.map((tag)=>{
-      let newTag = tag.replace(/ /g,"_");
-      return {"key": tag, "text": tag, "value": newTag}
     })
   }
 
@@ -39,11 +58,12 @@ class TagDropdown extends Component {
         allowAdditions={this.props.allowAdditions}
         multiple={true}
         search={true}
-        options={this.renderOptions()}
-        value={this.props.chosenTags}
+        options={this.state.tagOptions}
+        value={this.state.selectedTags}
         placeholder='Add tags'
         onChange={this.handleChange}
         onSearchChange={this.handleSearchChange}
+        onAddItem={this.handleAddition}
       />
     )
   }
@@ -60,7 +80,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    addTags: (tag)=>{ dispatch(addTags(tag))}
+    addTags: (tag)=>{
+      dispatch(addTag(tag))
+    }
   }
 }
 

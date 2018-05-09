@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { addTags } from '../actions/tagsActions'
+import { addTag, fetchTags } from '../actions/tagsActions'
 import { addTool } from '../actions/toolsActions'
 import TagDropdown from '../components/TagDropdown'
 import { loader } from '../HOCs/loader'
@@ -17,8 +17,7 @@ class AddToolContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log("sending state: ", this.state)
-    this.props.addTool(this.state)
+    this.props.addTool(this.state, this.collectTags)
     this.props.history.push("/")
   }
 
@@ -29,9 +28,10 @@ class AddToolContainer extends Component {
   }
 
   setTags = (tags) => {
+    console.log(tags)
     this.setState({
-      tags: tags
-    })
+      tags
+    }, ()=>{console.log("Setting Tags: ", this.state.tags)})
   }
 
   render() {
@@ -66,8 +66,11 @@ function mapDispatchToProps(dispatch){
     addTool: (tool) => {
       dispatch(addTool(tool))
     },
-    addTags: (tags) => {
-      dispatch(addTags(tags))
+    addTags: (tag) => {
+      dispatch(addTag(tag))
+    },
+    fetchTags: () => {
+      dispatch(fetchTags())
     }
   }
 }
