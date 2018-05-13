@@ -45,7 +45,7 @@ export function addTool(tool){
           posted_by: tool.posted_by,
           description: tool.description,
           url: tool.url,
-          tags: tool.tags}
+          tag_strings: tool.tags}
       })
   }
 
@@ -54,13 +54,7 @@ export function addTool(tool){
     .then(resp => resp.json())
     .then(result => {
 
-      debugger
-      dispatch({
-        type: 'ADD_TOOL',
-        payload: result
-      })
-
-      alert(`Added ${this.state.name}!`)
+      alert(`Added ${result.name}!`)
     })
   }
 
