@@ -9,7 +9,7 @@ export function fetchUsers(){
       type: USERS_LOADING
     })
 
-    return fetch('http://localhost:3090/api/v1/users')
+    return fetch('http://localhost:3000/api/v1/users')
     .then(resp => resp.json())
     .then(result => {
 
@@ -36,7 +36,7 @@ export function addUser(user){
   }
 
   return (dispatch) => {
-    return fetch(`http://localhost:3090/api/v1/users/${user.id}`, options)
+    return fetch(`http://localhost:3000/api/v1/users/${user.id}`, options)
     .then(resp => resp.json())
     .then(result => {
       dispatch({
