@@ -29,14 +29,15 @@ class TagDropdown extends Component {
   }
 
   handleAddition = (e, { value }) => {
+    console.log(value)
     let newTagObject = this.formatTagObject(value)
 
     this.setState({
       tagOptions: [...this.state.tagOptions, newTagObject],
       selectedTags: [...this.state.selectedTags, value],
-    })
+    }, ()=>{this.props.setTags(this.state.selectedTags)})
 
-    this.props.setTags(this.state.selectedTags)
+
   }
 
   handleChange = (e, { value }) => {

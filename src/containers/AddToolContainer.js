@@ -16,22 +16,24 @@ class AddToolContainer extends Component {
   }
 
   handleSubmit = (e) => {
+    console.log(this.state)
     e.preventDefault()
-    this.props.addTool(this.state, this.collectTags)
-    this.props.history.push("/")
+    this.props.addTool(this.state)
+    
+    // this.props.history.push("/")
   }
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-    }, ()=>{console.log(this.state)})
+    })
   }
 
   setTags = (tags) => {
     console.log(tags)
     this.setState({
       tags
-    }, ()=>{console.log("Setting Tags: ", this.state.tags)})
+    })
   }
 
   render() {
@@ -65,12 +67,6 @@ function mapDispatchToProps(dispatch){
   return{
     addTool: (tool) => {
       dispatch(addTool(tool))
-    },
-    addTags: (tag) => {
-      dispatch(addTag(tag))
-    },
-    fetchTags: () => {
-      dispatch(fetchTags())
     }
   }
 }

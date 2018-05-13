@@ -25,28 +25,42 @@ export function fetchTools(){
 }
 
 export function addTool(tool){
-  let options ={
-    method: "PATCH",
+  // debugger
+  console.log({
+  name: tool.name,
+  posted_by: tool.posted_by,
+  description: tool.description,
+  url: tool.url,
+  tags: tool.tags
+})
+  let options = {
+    method: "POST",
     headers:
       {Accept: 'application/json',
        'Content-Type': 'application/json'},
     body:
       JSON.stringify({
-      name: tool.name,
-      description: tool.description,
-      url: tool.url,
-      tags: tool.tags
-    })
+        tool:
+          {name: tool.name,
+          posted_by: tool.posted_by,
+          description: tool.description,
+          url: tool.url,
+          tags: tool.tags}
+      })
   }
 
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/tools/${tool.id}`, options)
+    return fetch(`http://localhost:3000/api/v1/tools/`, options)
     .then(resp => resp.json())
     .then(result => {
+
+      debugger
       dispatch({
         type: 'ADD_TOOL',
         payload: result
       })
+
+      alert(`Added ${this.state.name}!`)
     })
   }
 
