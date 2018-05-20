@@ -14,6 +14,13 @@ import App from './App';
 // STYLING
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Oswald:400,500', 'sans-serif']
+  }
+});
 
 
 // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

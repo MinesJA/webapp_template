@@ -19,8 +19,7 @@ class SearchBar extends Component {
   render(){
     return(
       <div>
-        SEARCH BAR
-        <Input label='I need...' placeholder='Styling tool' onChange={(e)=>{this.props.addSearchTerm(e.target.value)}} />
+        <Input label='Find' placeholder='Styling tools' onChange={(e)=>{this.props.addSearchTerm(e.target.value)}} />
         <TagDropdown chosenTags={this.state.tags} setTags={this.setTags} allowAdditions={false}/>
       </div>
     )
