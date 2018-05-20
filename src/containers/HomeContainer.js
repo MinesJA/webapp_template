@@ -9,10 +9,6 @@ import { fetchTags } from '../actions/tagsActions'
 
 class HomeContainer extends Component {
 
-  // componentDidMount = () => {
-  //   this.props.fetchTags()
-  // }
-
   render() {
     return (
       <div>

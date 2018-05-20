@@ -14,7 +14,7 @@ export default function Tools(state = {loading: false, tools: [], selectedTool: 
       return Object.assign({}, state, {selectedTool: action.payload})
 
     case LOAD_TOOLS:
-      return Object.assign({}, state, {tools: [action.payload], loading: false})
+      return Object.assign({}, state, {tools: action.payload, loading: false})
 
     default:
       return {...state}

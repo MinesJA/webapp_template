@@ -4,7 +4,6 @@ import { List, Label } from 'semantic-ui-react'
 
 
 const Tool = ({id, posted_by, name, url, description, tags}) => {
-  console.log("Tool: ", tags)
 
   const renderTags = tags.map( (tagg) => <Label as='a' tag>{tagg}</Label>)
 

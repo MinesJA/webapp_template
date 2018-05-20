@@ -4,35 +4,26 @@ export const TOOLS_LOADING = 'TOOLS_LOADING'
 export const LOAD_TOOLS = 'LOAD_TOOLS'
 
 
-export function fetchTools(){
+export function fetchTools(count){
+
   return (dispatch) => {
     dispatch({
       type: TOOLS_LOADING
     })
 
-    return fetch('http://localhost:3000/api/v1/tools')
+    return fetch(`http://localhost:3000/api/v1/tools?number=${count}`)
     .then(resp => resp.json())
     .then(result => {
-      // When do I set loading back to false?
-      debugger
-
+      
       dispatch({
       type: LOAD_TOOLS,
-      result
+      payload: result
       })
     })
   }
 }
 
 export function addTool(tool){
-  // debugger
-  console.log({
-  name: tool.name,
-  posted_by: tool.posted_by,
-  description: tool.description,
-  url: tool.url,
-  tags: tool.tags
-})
   let options = {
     method: "POST",
     headers:
