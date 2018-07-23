@@ -5,7 +5,9 @@ A site for developers to share, rate, find, and save tools useful for developmen
 ## Getting Started
 Deployed version coming soon...
 
-For now, feel free to fork and clone the repo to your local drive.
+For now, feel free to fork and clone the repo to your local drive along with the backend repo below:
+
+* [Backend Repo](https://github.com/MinesJA/tools_of_trade_backend)
 
 ## Built With
 * [Ruby on Rails 5.1.4](https://rubyonrails.org/)
