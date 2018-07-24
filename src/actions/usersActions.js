@@ -1,6 +1,6 @@
 export const ADD_USER = 'ADD_USER'
 export const USERS_LOADING = 'USERS_LOADING'
-export const LOAD_USERS = 'LOAD_USERS'
+export const FETCH_USERS = 'FETCH_USERS'
 
 
 export function fetchUsers(){
@@ -13,19 +13,19 @@ export function fetchUsers(){
     .then(resp => resp.json())
     .then(result => {
 
-      debugger;
-      // When do I set loading back to false?
       dispatch({
-      type: LOAD_USERS,
-      payload: result
+        type: FETCH_USERS,
+        payload: result
       })
+
     })
   }
 }
 
 export function addUser(user){
-  let options ={
-    method: "PATCH",
+
+  let options = {
+    method: "POST",
     headers:
       {Accept: 'application/json',
        'Content-Type': 'application/json'},
@@ -36,13 +36,15 @@ export function addUser(user){
   }
 
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users/${user.id}`, options)
+    return fetch(`http://localhost:3000/api/v1/users`, options)
     .then(resp => resp.json())
     .then(result => {
+
       dispatch({
-        type: 'ADD_USER',
+        type: ADD_USER,
         payload: result
       })
+
     })
   }
 }
@@ -52,11 +54,3 @@ export function setLoading(){
     type: USERS_LOADING
   }
 }
-
-
-// export function addTool(tool){
-//   return {
-//     type: ADD_TOOL,
-//     payload: tool
-//   }
-// }

@@ -23,12 +23,7 @@ WebFont.load({
 });
 
 
-// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
-
 const store = createStore(toolsApp, composeWithDevTools(applyMiddleware(thunk)));
-
-
 console.log("CURRENT STATE: ", store.getState())
 
 

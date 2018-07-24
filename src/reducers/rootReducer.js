@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import Users from './usersReducers'
 import Tools from './toolsReducers'
-import Tags from './tagsReducers'
+import Search from './searchReducers'
 
 
 const toolsApp = combineReducers({
-  Tags,
+  Search,
   Tools,
   Users,
 })

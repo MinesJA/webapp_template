@@ -1,7 +1,8 @@
 export const ADD_TOOL = 'ADD_TOOL'
 export const SELECT_TOOL = 'SELECT_TOOL'
 export const TOOLS_LOADING = 'TOOLS_LOADING'
-export const LOAD_TOOLS = 'LOAD_TOOLS'
+export const FETCH_TAGS = 'FETCH_TAGS'
+export const FETCH_TOOLS = 'FETCH_TOOLS'
 
 
 export function fetchTools(count){
@@ -14,16 +15,38 @@ export function fetchTools(count){
     return fetch(`http://localhost:3000/api/v1/tools?number=${count}`)
     .then(resp => resp.json())
     .then(result => {
-      
+
       dispatch({
-      type: LOAD_TOOLS,
+      type: FETCH_TOOLS,
       payload: result
       })
+
     })
   }
 }
 
+export function fetchTags(){
+
+  return (dispatch) => {
+    dispatch({
+      type: TOOLS_LOADING
+    })
+
+    return fetch('http://localhost:3000/api/v1/tags')
+    .then(resp => resp.json())
+    .then(result => {
+
+      dispatch({
+      type: FETCH_TAGS,
+      payload: result
+      })
+    })
+
+  }
+}
+
 export function addTool(tool){
+  
   let options = {
     method: "POST",
     headers:
@@ -44,7 +67,9 @@ export function addTool(tool){
     return fetch(`http://localhost:3000/api/v1/tools/`, options)
     .then(resp => resp.json())
     .then(result => {
+      debugger
 
+      // needs to render new tool page
       alert(`Added ${result.name}!`)
     })
   }

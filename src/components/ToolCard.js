@@ -8,27 +8,38 @@ const ToolCard = (props) => {
 
   const renderTags = () => (
     tags.map ((tag, index)=>(
-      <Label as='a' size='tiny' key={`${name}-tag-${index}`}>{tag.name}</Label>
+      <Label as='a' size='small' key={`${name}-tag-${index}`}>{tag.name}</Label>
     ))
   )
 
   return(
-    <Card>
+    <Card style={{margin:"10px"}}>
       <Image src={window.location.origin + '/images/Square.jpg'} height={100}/>
       <Card.Content>
         <Card.Header as='h1'> <a href={url}> {name} </a></Card.Header>
-        <Card.Meta>Created: Jan 8th, 2018</Card.Meta>
+        <Card.Meta>
+
+          <Label color="yellow">
+            <Icon name='thumbs up' color={"green"} size="large" style={{marginRight:"5px"}}/>
+            {upvotes}
+          </Label>
+
+
+          <Label color="yellow">
+            {downvotes}
+            <Icon name='thumbs down' color={"red"} size="large" style={{marginLeft:"5px"}}/>
+          </Label>
+
+        </Card.Meta>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
 
       <Card.Content extra>
         <Icon name='user' floated='left' />
           Posted By: {user.name}
-        <Icon name='thumbs outline up' color={"green"} />
-          {upvotes}
-        <Icon name='thumbs outline up' color={"red"} />
-          {downvotes}
+
         <br/>
+        
         {renderTags()}
 
       </Card.Content>

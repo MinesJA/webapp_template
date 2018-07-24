@@ -54,7 +54,6 @@ class TagDropdown extends Component {
 
   render(){
     return(
-
       <Dropdown
         selection
         allowAdditions={this.props.allowAdditions}
@@ -67,7 +66,6 @@ class TagDropdown extends Component {
         onSearchChange={this.handleSearchChange}
         onAddItem={this.handleAddition}
       />
-
     )
   }
 }

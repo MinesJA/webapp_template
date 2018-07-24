@@ -1,7 +1,10 @@
-import { TOOLS_LOADING, ADD_TOOL, SELECT_TOOL, LOAD_TOOLS } from '../actions/toolsActions'
+import { ADD_TOOL, SELECT_TOOL, TOOLS_LOADING, FETCH_TAGS, FETCH_TOOLS} from '../actions/toolsActions'
 
 
-export default function Tools(state = {loading: false, tools: [], selectedTool: null}, action) {
+const initialState = {toolLoading: false, tools: [], tags: [], selectedTool: null}
+
+
+export default function Tools(state = initialState, action) {
   switch(action.type) {
 
     case TOOLS_LOADING:
@@ -13,8 +16,11 @@ export default function Tools(state = {loading: false, tools: [], selectedTool: 
     case SELECT_TOOL:
       return Object.assign({}, state, {selectedTool: action.payload})
 
-    case LOAD_TOOLS:
-      return Object.assign({}, state, {tools: action.payload, loading: false})
+    case FETCH_TOOLS:
+      return Object.assign({}, state, {tools: action.payload, toolLoading: false})
+
+    case FETCH_TAGS:
+      return Object.assign({}, state, {tags: action.payload, toolLoading: false})
 
     default:
       return {...state}

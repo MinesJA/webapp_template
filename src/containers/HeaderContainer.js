@@ -14,10 +14,10 @@ class HeaderContainer extends Component{
              Tools of the Trade
           </Header.Content>
         </Header>
-        
-        <Segment basic></Segment>
+
+        <Segment basic />
         <SearchBar />
-        <Segment basic></Segment>
+        <Segment basic />
 
       </Segment>
     )

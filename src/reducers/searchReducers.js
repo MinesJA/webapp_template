@@ -1,10 +1,12 @@
-import { SEARCHES_LOADING, ADD_SEARCH_TERM, ADD_FILTER_TAGS } from '../actions/searchActions'
+import { SEARCHES_LOADING, ADD_SEARCH_TERM, ADD_FILTER_TAGS  } from '../actions/tagsActions'
 
-const initialState = {loading: false, searchTerm: "", filterTags: []}
+const initialState = {searchLoading: false, searchTerm: "", filterTags: []}
 
 
-export default function Tags(state = initialState, action){
+export default function Search(state = initialState, action){
+
   switch(action.type){
+
     case SEARCHES_LOADING:
       return Object.assign({}, state, {loading: true})
 
