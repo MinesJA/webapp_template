@@ -9,9 +9,6 @@ import { fetchTags } from '../actions/toolsActions'
 
 class HomeContainer extends Component {
 
-  comonentDidMount(){
-    this.props.fetchTags()
-  }
 
   render() {
     return (
@@ -23,13 +20,4 @@ class HomeContainer extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return {
-    fetchTags: () => {
-      dispatch(fetchTags())
-    }
-  }
-}
-
-
-export default connect(null, mapDispatchToProps)(loader(HomeContainer));
+export default loader(HomeContainer);

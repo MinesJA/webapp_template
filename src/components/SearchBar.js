@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Input } from 'semantic-ui-react'
+import { Input, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addSearchTerm, addFilterTags } from '../actions/searchActions'
+import { addSearchTerm } from '../actions/searchActions'
 import TagDropdown from './TagDropdown'
 
 
@@ -19,6 +19,7 @@ class SearchBar extends Component {
       <div>
         <Input label='Find' placeholder='Styling tools' onChange={(e)=>{this.props.addSearchTerm(e.target.value)}} />
         <TagDropdown chosenTags={this.state.tags} setTags={this.setTags} allowAdditions={false}/>
+        <Button onClick={this.props.fetchTools}>Search</Button>
       </div>
     )
   }
@@ -28,12 +29,8 @@ function mapDispatchToProps(dispatch){
   return {
     addSearchTerm: (searchTerm) => {
       dispatch(addSearchTerm(searchTerm))
-    },
-    addFilterTags: (tags) => {
-      dispatch(addFilterTags(tags))
     }
   }
-
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar)

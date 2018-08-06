@@ -8,19 +8,16 @@ import NavBar from './components/NavBar'
 import HomeContainer from './containers/HomeContainer'
 import AddToolContainer from './containers/AddToolContainer'
 import { fetchTools } from './actions/toolsActions'
-
 // STYLING
 import './App.css';
-
-
 
 
 class App extends Component {
 
   componentDidMount(){
-    this.props.fetchTools(8)
+    this.props.fetchTools();
+    this.props.fetchTags();
   }
-
 
   render() {
     return (
@@ -38,6 +35,9 @@ function mapDispatchToProps(dispatch){
   return {
     fetchTools: (count) => {
       dispatch(fetchTools(count))
+    },
+    fetchTags: () => {
+      dispatch(fetchTags())
     }
   }
 }
