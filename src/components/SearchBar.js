@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Label } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addSearchTerm, addFilterTags } from '../actions/searchActions'
 import TagDropdown from './TagDropdown'

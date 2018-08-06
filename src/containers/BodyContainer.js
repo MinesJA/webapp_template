@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
-import { Segment, Header, Icon, Grid, Container } from 'semantic-ui-react'
+import { Grid} from 'semantic-ui-react'
 import ToolCard from '../components/ToolCard'
 import { connect } from 'react-redux'
-import { loader } from '../HOCs/loader'
-import { fetchTools } from '../actions/toolsActions'
+
+
 
 class BodyContainer extends Component{
 
+
   renderTools = () => {
+    let tools = [];
+    if(this.props.filterTags.length > 0){
+      console.log("Filter Tags Exist")
 
-    console.log("Props - searchTerm: ", this.props.searchTerm)
-    console.log("Props - filterTags: ", this.props.filterTags)
+      this.props.tools.filter( (tool) => {
+        tool.tags
+      })
 
+    }
 
     return this.props.tools.map((tool, index)=>(
       <ToolCard key={`toolCard-${index}`} tool={tool} />
-      )
-    )
+    ))
   }
 
   render() {
@@ -32,8 +37,9 @@ class BodyContainer extends Component{
 
 function mapStateToProps(state){
   return {
-    searchTerm: state.Tags.searchTerm,
-    tags: state.Tags.filterTags,
+    filterTags: state.Search.filterTags,
+    searchTerm: state.Search.searchTerm,
+    tags: state.Search.filterTags,
     tools: state.Tools.tools
   }
 }

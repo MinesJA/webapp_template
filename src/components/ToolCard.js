@@ -3,7 +3,6 @@ import { Card, Icon, Image, Label } from 'semantic-ui-react'
 
 
 const ToolCard = (props) => {
-  console.log("ToolCard: ", props)
   let { name, description, user, url, tags, upvotes, downvotes,  } = props.tool
 
   const renderTags = () => (
@@ -39,7 +38,7 @@ const ToolCard = (props) => {
           Posted By: {user.name}
 
         <br/>
-        
+
         {renderTags()}
 
       </Card.Content>

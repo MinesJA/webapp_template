@@ -5,14 +5,14 @@ export const FETCH_TAGS = 'FETCH_TAGS'
 export const FETCH_TOOLS = 'FETCH_TOOLS'
 
 
-export function fetchTools(count){
+export function fetchTools(){
 
   return (dispatch) => {
     dispatch({
       type: TOOLS_LOADING
     })
 
-    return fetch(`http://localhost:3000/api/v1/tools?number=${count}`)
+    return fetch(`http://localhost:3000/api/v1/tools`)
     .then(resp => resp.json())
     .then(result => {
 
@@ -40,13 +40,14 @@ export function fetchTags(){
       type: FETCH_TAGS,
       payload: result
       })
+
     })
 
   }
 }
 
 export function addTool(tool){
-  
+
   let options = {
     method: "POST",
     headers:

@@ -3,7 +3,7 @@ import HeaderContainer from './HeaderContainer'
 import BodyContainer from './BodyContainer'
 import { connect } from 'react-redux'
 import { loader } from '../HOCs/loader'
-import { fetchTags } from '../actions/tagsActions'
+import { fetchTags } from '../actions/toolsActions'
 
 
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addTag } from '../actions/tagsActions'
 import { loader } from '../HOCs/loader'
+import { addFilterTags } from '../actions/searchActions'
 
 class TagDropdown extends Component {
   state = {
@@ -29,20 +29,20 @@ class TagDropdown extends Component {
   }
 
   handleAddition = (e, { value }) => {
-    console.log(value)
     let newTagObject = this.formatTagObject(value)
 
     this.setState({
       tagOptions: [...this.state.tagOptions, newTagObject],
       selectedTags: [...this.state.selectedTags, value],
     }, ()=>{this.props.setTags(this.state.selectedTags)})
-
-
   }
 
   handleChange = (e, { value }) => {
     this.setState({
       selectedTags: value
+    }, ()=>{
+      console.log(this.state.selectedTags)
+      this.props.addFilterTags(this.state.selectedTags)
     })
   }
 
@@ -74,15 +74,15 @@ class TagDropdown extends Component {
 
 function mapStateToProps(state){
   return {
-    tags: state.Tags.tags,
-    loading: state.Tags.loading
+    tags: state.Tools.tags,
+    loading: state.Tools.toolLoading
   }
 }
 
 function mapDispatchToProps(dispatch){
   return {
-    addTags: (tag)=>{
-      dispatch(addTag(tag))
+    addFilterTags: (tags) => {
+      dispatch(addFilterTags(tags))
     }
   }
 }

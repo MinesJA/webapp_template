@@ -5,11 +5,12 @@ import { Segment, Header, Icon } from 'semantic-ui-react'
 class HeaderContainer extends Component{
 
 
+
   render() {
     return(
       <Segment vertical textAlign='center'>
         <Header icon>
-        <Icon name='setting' />
+          <Icon name='setting' />
           <Header.Content className='logo' stackable>
              Tools of the Trade
           </Header.Content>
