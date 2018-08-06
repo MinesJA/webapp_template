@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import NavBar from './components/NavBar'
 import HomeContainer from './containers/HomeContainer'
 import AddToolContainer from './containers/AddToolContainer'
-import { fetchTools } from './actions/toolsActions'
+import { fetchTools, fetchTags } from './actions/toolsActions'
 // STYLING
 import './App.css';
 

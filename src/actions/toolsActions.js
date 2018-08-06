@@ -5,16 +5,15 @@ export const FETCH_TAGS = 'FETCH_TAGS'
 export const FETCH_TOOLS = 'FETCH_TOOLS'
 
 
-export function fetchTools(tags, searchTerm){
-
-  // debugger
+export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
+  let { filterTags, searchTerm } = searchObject
 
   return (dispatch) => {
     dispatch({
       type: TOOLS_LOADING
     })
 
-    return fetch(`http://localhost:3000/api/v1/tools?tags=${tags}&searchTerm=${searchTerm}`)
+    return fetch(`http://localhost:3000/api/v1/tools?tags=${filterTags}&searchTerm=${searchTerm}`)
     .then(resp => resp.json())
     .then(result => {
 
