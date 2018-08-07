@@ -13,10 +13,16 @@ class SearchBar extends Component {
   }
 
   setTags = (tags) => {
-    console.log("HEYHEYsetTags: ", tags)
+    this.setState({
+      filterTags: tags
+    }, ()=>{console.log(this.state.filterTags)})
   }
 
-  handleChange = ()
+  handleChange = (e, { value }) => {
+    this.setState({
+      searchTerm: value
+    }, ()=>{console.log(this.state.searchTerm)})
+  }
 
   render(){
     return(

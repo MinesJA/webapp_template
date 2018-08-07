@@ -42,7 +42,7 @@ class TagDropdown extends Component {
       selectedTags: value
     }, ()=>{
       console.log(this.state.selectedTags)
-      this.props.addFilterTags(this.state.selectedTags)
+      this.props.setTags(this.state.selectedTags)
     })
   }
 
