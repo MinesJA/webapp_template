@@ -1,6 +1,8 @@
 export const ADD_USER = 'ADD_USER'
 export const USERS_LOADING = 'USERS_LOADING'
 export const FETCH_USERS = 'FETCH_USERS'
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
 
 
 export function fetchUsers(){
@@ -54,3 +56,18 @@ export function setLoading(){
     type: USERS_LOADING
   }
 }
+
+export function login(user = {}){
+  return {
+    type: LOGIN,
+    payload: {
+      user
+    }
+  };
+};
+
+export function logout(){
+  return {
+    type: LOGOUT
+  }
+};

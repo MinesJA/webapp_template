@@ -7,7 +7,11 @@ import { connect } from 'react-redux'
 import NavBar from './components/NavBar'
 import HomeContainer from './containers/HomeContainer'
 import AddToolContainer from './containers/AddToolContainer'
+import SavedTools from './containers/SavedTools'
+import UserLogin from './containers/UserLogin'
+
 import { fetchTools, fetchTags } from './actions/toolsActions'
+
 // STYLING
 import './App.css';
 
@@ -25,10 +29,14 @@ class App extends Component {
         <NavBar />
         <Route path="/" exact component={HomeContainer} />
         <Route exact path="/tools/new" component={AddToolContainer} render />
+        <Route exact path="/tools" component={SavedTools} />
+        <Route exact path="/login" component={UserLogin} />
       </div>
     );
   }
 }
+
+
 
 
 function mapDispatchToProps(dispatch){
