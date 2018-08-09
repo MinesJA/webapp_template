@@ -29,7 +29,7 @@ console.log("CURRENT STATE: ", store.getState())
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router >
+    <Router>
       <App />
     </Router>
   </Provider>,
