@@ -13,7 +13,7 @@ export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
       type: TOOLS_LOADING
     })
 
-    return fetch(`http://localhost:3000/api/v1/tools?tags=${filterTags}&searchTerm=${searchTerm}`)
+    return fetch(`https://tools-of-trade-api.herokuapp.com/api/v1/tools?tags=${filterTags}&searchTerm=${searchTerm}`)
     .then(resp => resp.json())
     .then(result => {
 
@@ -33,7 +33,7 @@ export function fetchTags(){
       type: TOOLS_LOADING
     })
 
-    return fetch('http://localhost:3000/api/v1/tags')
+    return fetch('https://tools-of-trade-api.herokuapp.com/api/v1/tags')
     .then(resp => resp.json())
     .then(result => {
 
@@ -66,7 +66,7 @@ export function addTool(tool){
   }
 
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/tools/`, options)
+    return fetch(`https://tools-of-trade-api.herokuapp.com/api/v1/tools/`, options)
     .then(resp => resp.json())
     .then(result => {
       debugger

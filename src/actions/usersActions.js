@@ -11,7 +11,7 @@ export function fetchUsers(){
       type: USERS_LOADING
     })
 
-    return fetch('http://localhost:3000/api/v1/users')
+    return fetch('https://tools-of-trade-api.herokuapp.com/api/v1/users')
     .then(resp => resp.json())
     .then(result => {
 
@@ -38,7 +38,7 @@ export function addUser(user){
   }
 
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users`, options)
+    return fetch(`https://tools-of-trade-api.herokuapp.com/api/v1/users`, options)
     .then(resp => resp.json())
     .then(result => {
 

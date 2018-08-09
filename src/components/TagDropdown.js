@@ -12,7 +12,7 @@ class TagDropdown extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3000/api/v1/tags')
+    fetch('https://tools-of-trade-api.herokuapp.com/api/v1/tags')
       .then(resp => resp.json())
       .then(result => {
 
