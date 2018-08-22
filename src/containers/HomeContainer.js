@@ -11,6 +11,7 @@ class HomeContainer extends Component {
 
 
   render() {
+    console.log("Currently in environment: ", process.env.REACT_APP_ENVIRONMENT)
     return (
       <div>
         <HeaderContainer />

@@ -11,7 +11,7 @@ export function fetchUsers(){
       type: USERS_LOADING
     })
 
-    return fetch('https://tools-of-trade-api.herokuapp.com/api/v1/users')
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/users`)
     .then(resp => resp.json())
     .then(result => {
 
@@ -38,7 +38,8 @@ export function addUser(user){
   }
 
   return (dispatch) => {
-    return fetch(`https://tools-of-trade-api.herokuapp.com/api/v1/users`, options)
+
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/users`, options)
     .then(resp => resp.json())
     .then(result => {
 
@@ -57,13 +58,21 @@ export function setLoading(){
   }
 }
 
-export function login(user = {}){
-  return {
-    type: LOGIN,
-    payload: {
-      user
-    }
-  };
+export function login(){
+
+  return (dispatch) => {
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/login`)
+    .then(resp => resp.json())
+    .then(result => {
+      // Hit login route on users,
+      // users sends back encrypted client_id,
+      // ID is translated with JWT and used to redirect to github auth page
+      // 
+
+      debugger
+
+    })
+  }
 };
 
 export function logout(){
