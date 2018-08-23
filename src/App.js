@@ -10,6 +10,7 @@ import AddToolContainer from './containers/AddToolContainer'
 import SavedTools from './containers/SavedTools'
 import UserLogin from './containers/UserLogin'
 
+import { getQueryParms } from './Adapter'
 import { fetchTools, fetchTags } from './actions/toolsActions'
 
 // STYLING
@@ -17,10 +18,25 @@ import './App.css';
 
 
 class App extends Component {
+  constructor(){
+    super();
+
+    const params = getQueryParms();
+    this.state = {token: params.token}
+  }
+
 
   componentDidMount(){
     this.props.fetchTools();
     this.props.fetchTags();
+
+
+    let url_array = window.location.href.split("?")
+
+    if(url_array.length > 1){
+      let token = url_array[1].split("=")[1]
+      localStorage.setItem('token', token)
+    }
   }
 
   render() {
