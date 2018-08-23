@@ -1,36 +1,24 @@
-// REACT
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
-// REDUX
 import { connect } from 'react-redux'
-// COMPONENTS
 import NavBar from './components/NavBar'
 import HomeContainer from './containers/HomeContainer'
 import AddToolContainer from './containers/AddToolContainer'
 import SavedTools from './containers/SavedTools'
 import UserLogin from './containers/UserLogin'
-
-// import { adapter } from './Adapter'
 import { fetchTools, fetchTags } from './actions/toolsActions'
 import { setCurrentUser } from './actions/usersActions'
-import { getQueryParams } from './Adapter'
-
-// STYLING
+import Adapter from './Adapter'
 import './App.css';
 
 
 class App extends Component {
-  // constructor(){
-  //   super();
-  //
-  //   const params = getQueryParams();
-  //   this.state = {token: params.token}
-  // }
+
 
   componentDidMount(){
     this.props.fetchTools();
     this.props.fetchTags();
-    const params = getQueryParams();
+    const params = Adapter.getQueryParams();
 
     if(!!params){
       localStorage.setItem('token', params.token)

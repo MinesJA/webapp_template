@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Icon, Image, Label, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
+import { saveTool, upvoteTool, downvoteTool } from '../actions/tools'
 
 
 const ToolCard = (props) => {
@@ -28,10 +29,9 @@ const ToolCard = (props) => {
         default:
           console.log("Nothing clicked")
       }
-
     } else {
-        alert("You must be signed in to vote or save")
-      }
+      alert("You must be signed in to vote or save")
+    }
 
   }
 
@@ -98,5 +98,19 @@ function mapStateToProps(state){
   }
 }
 
+function mapDispatchToProps(dispatch){
+  return {
+    saveTool: (tool_id) => {
+      dispatch(saveTool(tool_id))
+    },
+    upvote: (tool_id) => {
+      dispatch(upvote(tool_id))
+    },
+    downvote: (tool_id) => {
+      dispatch(downvote(tool_id))
+    }
+  }
+}
 
-export default connect(mapStateToProps)(ToolCard)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToolCard)

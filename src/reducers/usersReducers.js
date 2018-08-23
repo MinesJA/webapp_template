@@ -1,11 +1,11 @@
-import { USERS_LOADING, ADD_USER,  FETCH_USERS, LOGOUT, SET_CURRENT_USER } from '../actions/usersActions'
+import { USERS_LOADING, SELECT_USER, LOGOUT, SET_CURRENT_USER } from '../actions/usersActions'
 
 
 const initialState = {
   isAuthenticated: false,
   currentUser: {},
   loading: false,
-  users: []
+  selectedUser: []
 }
 
 export default function Users(state = initialState, action){
@@ -14,17 +14,14 @@ export default function Users(state = initialState, action){
     case USERS_LOADING:
      return Object.assign({}, state, {loading: true})
 
-    case ADD_USER:
-      return Object.assign({}, state, {users: [...state, action.payload]})
-
-    case FETCH_USERS:
-      return Object.assign({}, state, {users: [action.payload], loading: false})
+    case SELECT_USER:
+      return Object.assign({}, state, {selectedUser: action.payload, loading: false})
 
     case LOGOUT:
       return Object.assign({}, initialState)
 
     case SET_CURRENT_USER:
-      return Object.assign({}, state, {isAuthenticated: true, currentUser: action.payload})
+      return Object.assign({}, state, {isAuthenticated: true, currentUser: action.payload, loading: false})
 
     default:
       return {...state}
