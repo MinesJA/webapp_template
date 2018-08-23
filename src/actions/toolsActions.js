@@ -16,7 +16,7 @@ export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
     return fetch(`${process.env.REACT_APP_BACKEND_API}/tools?tags=${filterTags}&searchTerm=${searchTerm}`)
     .then(resp => resp.json())
     .then(result => {
-
+      
       dispatch({
       type: FETCH_TOOLS,
       payload: result

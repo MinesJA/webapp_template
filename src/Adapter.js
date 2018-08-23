@@ -1,15 +1,19 @@
 const API_ROOT = 'http://localhost:3000/api/v1'
 
 
-const getQueryParams = () => {
+export const getQueryParams = () => {
   const query = window.location.search.substring(1);
 
-  const pairs = query.split('&').map((str) => str.split('='));
+  if(!!query){
+    const pairs = query.split('&').map((str) => str.split('='));
 
-  return pairs.reduce((memo, pair) => {
-    memo[pair[0]] = pair[1];
-    return memo;
-  }, {});
+    return pairs.reduce((memo, pair) => {
+      memo[pair[0]] = pair[1];
+      return memo;
+    }, {});
+  }else{
+    return null
+  }
 }
 
 const getWithToken = url => {
@@ -20,13 +24,13 @@ const getWithToken = url => {
   }).then(res => res.json());
 }
 
-const getCurrentUser = () => {
+export const getCurrentUser = () => {
   return getWithToken(`${API_ROOT}/current_user`)
 }
 
-export const adapter = {
-  auth: {
-    getCurrentUser,
-    getQueryParams
-  }
-}
+// export const adapter = {
+//   auth: {
+//     getCurrentUser,
+//     getQueryParams
+//   }
+// }

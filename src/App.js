@@ -12,6 +12,8 @@ import UserLogin from './containers/UserLogin'
 
 // import { adapter } from './Adapter'
 import { fetchTools, fetchTags } from './actions/toolsActions'
+import { setCurrentUser } from './actions/usersActions'
+import { getQueryParams } from './Adapter'
 
 // STYLING
 import './App.css';
@@ -21,13 +23,20 @@ class App extends Component {
   // constructor(){
   //   super();
   //
-  //   // const params = getQueryParams();
+  //   const params = getQueryParams();
   //   this.state = {token: params.token}
   // }
 
   componentDidMount(){
     this.props.fetchTools();
     this.props.fetchTags();
+    const params = getQueryParams();
+
+    if(!!params){
+      localStorage.setItem('token', params.token)
+      this.props.setCurrentUser()
+    }
+
   }
 
   render() {
@@ -53,6 +62,9 @@ function mapDispatchToProps(dispatch){
     },
     fetchTags: () => {
       dispatch(fetchTags())
+    },
+    setCurrentUser: () => {
+      dispatch(setCurrentUser())
     }
   }
 }

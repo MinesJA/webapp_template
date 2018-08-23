@@ -1,8 +1,31 @@
 export const ADD_USER = 'ADD_USER'
 export const USERS_LOADING = 'USERS_LOADING'
 export const FETCH_USERS = 'FETCH_USERS'
-export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
+export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+
+// process.env.REACT_APP_BACKEND_API
+
+export function setCurrentUser(){
+  return (dispatch) => {
+    dispatch({
+      type: USERS_LOADING
+    })
+
+    const token = localStorage.getItem('token');
+    const options = {headers: { Authorization: token }}
+
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/current_user`, options)
+      .then(resp => resp.json())
+      .then(result => {
+
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: result
+        })
+      })
+  }
+}
 
 
 export function fetchUsers(){
@@ -58,25 +81,9 @@ export function setLoading(){
   }
 }
 
-export function login(){
-
-  return (dispatch) => {
-    return fetch(`${process.env.REACT_APP_BACKEND_API}/login`)
-    .then(resp => resp.json())
-    .then(result => {
-      // Hit login route on users,
-      // users sends back encrypted client_id,
-      // ID is translated with JWT and used to redirect to github auth page
-      // 
-
-      debugger
-
-    })
-  }
-};
-
 export function logout(){
-  return {
-    type: LOGOUT
-  }
+  console.log("In Logout")
+  localStorage.removeItem('token');
+
+  return { type: LOGOUT }
 };

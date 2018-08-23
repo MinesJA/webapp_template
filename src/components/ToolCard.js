@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Icon, Image, Label } from 'semantic-ui-react'
+import { Card, Icon, Image, Label, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
 
 const ToolCard = (props) => {
@@ -11,26 +12,70 @@ const ToolCard = (props) => {
     ))
   )
 
+  const handleClick = (e) => {
+
+    if(props.isAuthenticated){
+      switch(e.target.value){
+        case "save":
+
+          break;
+        case "upvote":
+
+          break;
+        case "downvote":
+
+          break;
+        default:
+          console.log("Nothing clicked")
+      }
+
+    } else {
+        alert("You must be signed in to vote or save")
+      }
+
+  }
+
+
+
+
+
+
+
   return(
     <Card style={{margin:"10px"}}>
       <Image src={window.location.origin + '/images/Square.jpg'} height={100}/>
       <Card.Content>
-        <Card.Header as='h1'> <a href={url}> {name} </a></Card.Header>
+        <Card.Header as='h1'> <a href={url}> {name} </a> </Card.Header>
         <Card.Meta>
 
-          <Label color="yellow">
-            <Icon name='thumbs up' color={"green"} size="large" style={{marginRight:"5px"}}/>
-            {upvotes}
-          </Label>
+          <Button.Group size="tiny" onClick={handleClick}>
+            <Button
+              value='upvote'
+              content='45'
+              color="green"
+              icon='thumbs up'
+            />
+            <Button
+              value='downvote'
+              content='36'
+              color="red"
+              icon='thumbs down'
+            />
+
+            <Button
+              value='save'
+              content='56'
+              color="blue"
+              icon='plus'
+            />
+
+          </Button.Group>
 
 
-          <Label color="yellow">
-            {downvotes}
-            <Icon name='thumbs down' color={"red"} size="large" style={{marginLeft:"5px"}}/>
-          </Label>
 
         </Card.Meta>
         <Card.Description>{description}</Card.Description>
+
       </Card.Content>
 
       <Card.Content extra>
@@ -46,7 +91,12 @@ const ToolCard = (props) => {
   )
 }
 
+function mapStateToProps(state){
+  return {
+    isAuthenticated: state.Users.isAuthenticated,
+    currentUser: state.Users.currentUser
+  }
+}
 
 
-
-export default ToolCard
+export default connect(mapStateToProps)(ToolCard)

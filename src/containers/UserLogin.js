@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Button } from 'semantic-ui-react'
-import { login } from '../actions/usersActions'
 
 class UserLogin extends Component {
   state = {
@@ -19,15 +18,7 @@ class UserLogin extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return {
-    login: () => {
-      dispatch(login())
-    }
-  }
-}
 
 
 
-
-export default connect(null, mapDispatchToProps)(UserLogin);
+export default UserLogin;
