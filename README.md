@@ -4,8 +4,7 @@ A site for developers to share, rate, find, and save tools useful for developmen
 
 ## Getting Started
 
-
-For now, feel free to fork and clone the repo to your local drive along with the backend repo below:
+Deployed site coming soon!
 
 * [Backend Repo](https://github.com/MinesJA/tools_of_trade_backend)
 
