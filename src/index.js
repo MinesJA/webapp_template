@@ -24,7 +24,6 @@ WebFont.load({
 
 
 const store = createStore(toolsApp, composeWithDevTools(applyMiddleware(thunk)));
-console.log("CURRENT STATE: ", store.getState())
 
 
 ReactDOM.render(

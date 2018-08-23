@@ -8,27 +8,6 @@ class NavBar extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  logout = () => {
-
-  }
-
-  renderLoginMenu = () => {
-    if(this.props.isAuthenticated){
-      return(
-        <Menu.Menu position="right">
-          <Menu.Item name='logout' as={NavLink} exact to="/" active={activeItem === 'logout'} onClick={this.logout} />
-        </Menu.Menu>
-      )
-    }else{
-      return(
-        <Menu.Menu position="right">
-          <Menu.Item><img src="https://www.ienglishstatus.com/wp-content/uploads/2018/04/Anonymous-Whatsapp-profile-picture.jpg"</Menu.Item>
-          <Menu.Item name='login' as={NavLink} exact to="/login" active={activeItem === 'login'} onClick={this.handleItemClick} />}
-        </Menu.Menu>
-      )
-    }
-  }
-
 
 
   render() {
@@ -45,11 +24,9 @@ class NavBar extends Component {
         <Menu.Item name='myTools' as={NavLink} exact to="/tools" active={activeItem === 'myTools'} onClick={this.handleItemClick} />
         <Menu.Menu position="right">
         {isAuthenticated ?
-
-
+          <Menu.Item name='logout' as={NavLink} exact to="/" active={activeItem === 'logout'} onClick={this.logout} />
           :
-
-
+          <Menu.Item name='login' as={NavLink} exact to="/login" active={activeItem === 'login'} onClick={this.handleItemClick} />}
         </Menu.Menu>
       </Menu>
     )

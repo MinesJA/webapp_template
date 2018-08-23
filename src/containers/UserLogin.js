@@ -11,7 +11,6 @@ class UserLogin extends Component {
   }
 
 
-
   render() {
     let { authorizeUrl, clientId, scope } = this.state
     return (
