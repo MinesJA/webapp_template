@@ -1,11 +1,10 @@
 Tools of the Trade
 ===============
-A site for developers to share, rate, find, and save tools useful for development. Share anything from wireframes to frameworks for gems and packages.
+A site for developers to share, rate, find, and save tools useful for development. Share anything from wireframe tools to frameworks to basic gems and packages.
 
 ## Getting Started
-Deployed version coming soon...
 
-For now, feel free to fork and clone the repo to your local drive along with the backend repo below:
+Deployed site coming soon!
 
 * [Backend Repo](https://github.com/MinesJA/tools_of_trade_backend)
 
