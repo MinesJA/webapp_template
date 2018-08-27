@@ -1,11 +1,5 @@
 
-function getToken() {
-  return localStorage.getItem('token');
-}
-
-function authorizationHeader() {
-  return {headers: { Authorization: getToken() }}
-}
+const getToken = () => (localStorage.getItem('token'));
 
 
 export default class Adapter{
@@ -30,8 +24,7 @@ export default class Adapter{
       .then(resp => resp.json())
   }
 
-  static addTool({name, posted_by, description, url, tags}){
-
+  static addTool({author_id, name, description, url, tags}){
     let options = {
       method: 'POST',
       headers: {
@@ -41,22 +34,18 @@ export default class Adapter{
        },
       body:
         JSON.stringify({
-          tool: {
-            name: name,
-            posted_by: posted_by,
-            description: description,
-            url: url,
-            tag_strings: tags
-          }
+          name: name,
+          description: description,
+          url: url,
+          tag_strings: tags
         })
     }
 
-    return fetch(`${process.env.REACT_APP_BACKEND_API}/tools/`, options)
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${author_id}/tools/`, options)
       .then(resp => resp.json())
   }
 
   static saveTool(tool_id){
-
     let options = {
       method: 'PATCH',
       headers: {
@@ -64,10 +53,10 @@ export default class Adapter{
          'Content-Type': 'application/json',
          Authorization: getToken()
        },
-      body: JSON.stringify({tool: {tool_id}})
+      body: JSON.stringify({tool: {id: tool_id}})
     }
 
-    return fetch(`${process.env.REACT_APP_BACKEND_API}/tool/${tool_id}`, options)
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/tools/${tool_id}`, options)
       .then(resp => resp.json())
   }
 
@@ -87,11 +76,6 @@ export default class Adapter{
   }
 
 
-
-
-
-
-
   static getQueryParams(){
     const query = window.location.search.substring(1);
 
@@ -102,40 +86,9 @@ export default class Adapter{
         memo[pair[0]] = pair[1];
         return memo;
       }, {});
-    }else{
+    } else {
       return null
     }
   }
 
-
-
-
 }
-
-
-
-
-
-
-export const getQueryParams = () => {
-
-}
-
-const getWithToken = url => {
-  const token = localStorage.getItem('token');
-
-  return fetch(url, {
-    headers: { Authorization: token }
-  }).then(res => res.json());
-}
-
-export const getCurrentUser = () => {
-  return getWithToken(`${API_ROOT}/current_user`)
-}
-
-// export const adapter = {
-//   auth: {
-//     getCurrentUser,
-//     getQueryParams
-//   }
-// }

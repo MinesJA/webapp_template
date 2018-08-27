@@ -1,11 +1,11 @@
 import React from 'react'
 import { Card, Icon, Image, Label, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { saveTool, upvoteTool, downvoteTool } from '../actions/tools'
+import { saveTool, voteTool } from '../actions/toolsActions'
 
 
 const ToolCard = (props) => {
-  let { name, description, user, url, tags, upvotes, downvotes,  } = props.tool
+  let { id, name, description, url, upvotes, downvotes, saves, author, tags } = props.tool
 
   const renderTags = () => (
     tags.map ((tag, index)=>(
@@ -18,13 +18,14 @@ const ToolCard = (props) => {
     if(props.isAuthenticated){
       switch(e.target.value){
         case "save":
-
+          debugger
+          // props.saveTool(props.tool.id)
           break;
         case "upvote":
-
+          // props.upVote()
           break;
         case "downvote":
-
+          // props.downVote()
           break;
         default:
           console.log("Nothing clicked")
@@ -34,10 +35,6 @@ const ToolCard = (props) => {
     }
 
   }
-
-
-
-
 
 
 
@@ -51,20 +48,20 @@ const ToolCard = (props) => {
           <Button.Group size="tiny" onClick={handleClick}>
             <Button
               value='upvote'
-              content='45'
+              content={upvotes}
               color="green"
               icon='thumbs up'
             />
             <Button
               value='downvote'
-              content='36'
+              content={downvotes}
               color="red"
               icon='thumbs down'
             />
 
             <Button
               value='save'
-              content='56'
+              content={saves}
               color="blue"
               icon='plus'
             />
@@ -80,7 +77,7 @@ const ToolCard = (props) => {
 
       <Card.Content extra>
         <Icon name='user' floated='left' />
-          Posted By: {user.name}
+          Posted By: {author.name}
 
         <br/>
 
@@ -103,11 +100,11 @@ function mapDispatchToProps(dispatch){
     saveTool: (tool_id) => {
       dispatch(saveTool(tool_id))
     },
-    upvote: (tool_id) => {
-      dispatch(upvote(tool_id))
+    upVote: (tool_id) => {
+      dispatch(voteTool(tool_id, 1))
     },
-    downvote: (tool_id) => {
-      dispatch(downvote(tool_id))
+    downVote: (tool_id) => {
+      dispatch(voteTool(tool_id, -1))
     }
   }
 }

@@ -41,6 +41,7 @@ export function addTool(tool){
   return (dispatch) => {
     Adapter.addTool(tool)
       .then(result => {
+        debugger
         alert(`Added ${result.name}!`)
       })
   }
@@ -59,7 +60,7 @@ export function saveTool(tool_id){
 export function voteTool(tool_id, upDown){
 
   return (dispatch) => {
-    Adapter.upvoteTool(tool_id, upDown)
+    Adapter.voteTool(tool_id, upDown)
       .then(result => {
         alert(`Upvoted ${result.name}`)
       })

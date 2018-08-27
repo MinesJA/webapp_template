@@ -11,7 +11,6 @@ class NavBar extends Component {
 
 
   renderLoginMenu = () => {
-
     if(this.props.isAuthenticated){
       return(
         <Menu.Menu position="right">
@@ -26,8 +25,6 @@ class NavBar extends Component {
         </Menu.Menu>
       )
     }
-
-
   }
 
   render() {

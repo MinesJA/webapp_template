@@ -8,7 +8,6 @@ import { withRouter } from 'react-router-dom'
 
 class AddToolContainer extends Component {
   state = {
-      posted_by: "",
       name: "",
       url: "",
       description: "",
@@ -17,8 +16,10 @@ class AddToolContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addTool(this.state)
-    debugger
+
+    let tool = Object.assign({}, this.state, {author_id: this.props.currentUser.id})
+
+    this.props.addTool(tool)
     this.props.history.push("/")
   }
 
@@ -29,7 +30,6 @@ class AddToolContainer extends Component {
   }
 
   setTags = (tags) => {
-    console.log(tags)
     this.setState({
       tags
     })
@@ -42,11 +42,6 @@ class AddToolContainer extends Component {
           <Form.Group>
             <Form.Input label="Name of Tool" placeholder='React.js' name='name' value={this.state.name} onChange={this.handleChange} />
             <Form.Input label='Tool Homepage' placeholder='toolsite.com' name='url' value={this.state.url} onChange={this.handleChange} />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Input label="Your Name" placeholder='Bob Bobbo' name='posted_by' value={this.state.posted_by} onChange={this.handleChange} />
-
           </Form.Group>
 
           <Form.TextArea label='Description of Tool' name='description' placeholder='React.js is super duper...' onChange={this.handleChange} />
@@ -62,6 +57,12 @@ class AddToolContainer extends Component {
 }
 
 
+function mapStateToProps(state){
+  return {
+    currentUser: state.Users.currentUser
+  }
+}
+
 
 function mapDispatchToProps(dispatch){
   return{
@@ -71,4 +72,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(loader(AddToolContainer)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(loader(AddToolContainer)));
