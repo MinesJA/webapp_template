@@ -11,7 +11,7 @@ export function setCurrentUser(){
 
     Adapter.fetchCurrentUser()
       .then(result => {
-        console.log("Setting current User")
+        console.log(result)
         dispatch({
           type: SET_CURRENT_USER,
           payload: result

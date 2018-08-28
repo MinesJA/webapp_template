@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Grid} from 'semantic-ui-react'
 import ToolCard from '../components/ToolCard'
-import { connect } from 'react-redux'
-
 
 
 class BodyContainer extends Component{
 
   renderTools = () => {
     return this.props.tools.map((tool, index)=>(
-      <ToolCard key={`toolCard-${index}`} tool={tool} />
+      <ToolCard key={`toolCard-${index}`} tool={tool} saved={this.props.saved}/>
     ))
   }
 
@@ -24,12 +22,6 @@ class BodyContainer extends Component{
 
 
 
-function mapStateToProps(state){
-  return {
-    filterTags: state.Search.filterTags,
-    searchTerm: state.Search.searchTerm,
-    tools: state.Tools.tools
-  }
-}
 
-export default connect(mapStateToProps)(BodyContainer);
+
+export default BodyContainer;

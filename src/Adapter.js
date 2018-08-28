@@ -45,7 +45,7 @@ export default class Adapter{
       .then(resp => resp.json())
   }
 
-  static saveTool(tool_id){
+  static saveTool({tool_id, user_id}){
     let options = {
       method: 'PATCH',
       headers: {
@@ -53,10 +53,10 @@ export default class Adapter{
          'Content-Type': 'application/json',
          Authorization: getToken()
        },
-      body: JSON.stringify({tool: {id: tool_id}})
+      body: JSON.stringify({id: tool_id})
     }
 
-    return fetch(`${process.env.REACT_APP_BACKEND_API}/tools/${tool_id}`, options)
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${user_id}/tools/${tool_id}`, options)
       .then(resp => resp.json())
   }
 
@@ -73,6 +73,19 @@ export default class Adapter{
     }
 
     return fetch(`${process.env.REACT_APP_BACKEND_API}/tool/${tool_id}`, options)
+  }
+
+  static removeSavedTool({tool_id, user_id}){
+    let options = {
+      method: 'DELETE',
+      headers: {
+          Accept: 'application/json',
+         'Content-Type': 'application/json',
+         Authorization: getToken()
+       }
+    }
+
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${user_id}/tools/${tool_id}`, options)
   }
 
 

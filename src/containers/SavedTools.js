@@ -1,5 +1,22 @@
 import React, { Component } from 'react'
+import BodyContainer from './BodyContainer'
+import { connect } from 'react-redux'
+// import withAuth from '../HOCs/withAuth'
 
-const SavedTools = () => (<h3>Saved Tools</h3>)
+class SavedTools extends Component {
 
-export default SavedTools
+  render(){
+    return(
+      <BodyContainer tools={this.props.currentUser.tools} saved/>
+    )
+  }
+}
+
+function mapStateToProps(state){
+  return {
+    currentUser: state.Users.currentUser
+  }
+}
+
+
+export default connect(mapStateToProps)(SavedTools);

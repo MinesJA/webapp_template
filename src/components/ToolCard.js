@@ -1,11 +1,13 @@
 import React from 'react'
 import { Card, Icon, Image, Label, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { saveTool, voteTool } from '../actions/toolsActions'
+import { saveTool, voteTool, removeSavedTool } from '../actions/toolsActions'
 
 
 const ToolCard = (props) => {
-  let { id, name, description, url, upvotes, downvotes, saves, author, tags } = props.tool
+  let { isAuthenticated, tool, currentUser, saved, removeSavedTool } = props
+  let { id, name, description, url, upvotes, downvotes, saves, author, tags } = tool
+
 
   const renderTags = () => (
     tags.map ((tag, index)=>(
@@ -15,11 +17,14 @@ const ToolCard = (props) => {
 
   const handleClick = (e) => {
 
-    if(props.isAuthenticated){
+
+    if(isAuthenticated){
+      let payload;
+
       switch(e.target.value){
         case "save":
-          debugger
-          // props.saveTool(props.tool.id)
+          payload = {tool_id: id, user_id: currentUser.id}
+          props.saveTool(payload)
           break;
         case "upvote":
           // props.upVote()
@@ -27,13 +32,18 @@ const ToolCard = (props) => {
         case "downvote":
           // props.downVote()
           break;
+        case "remove":
+          payload = {tool_id: id, user_id: currentUser.id};
+          removeSavedTool(payload)
+
+          console.log("Remove")
+          break;
         default:
           console.log("Nothing clicked")
       }
     } else {
       alert("You must be signed in to vote or save")
     }
-
   }
 
 
@@ -58,13 +68,21 @@ const ToolCard = (props) => {
               color="red"
               icon='thumbs down'
             />
+            {!!saved ?
+              <Button
+                value='remove'
+                color="blue"
+                icon='minus'
+              />
+              :
+              <Button
+                value='save'
+                content={saves}
+                color="blue"
+                icon='plus'
+              />
+            }
 
-            <Button
-              value='save'
-              content={saves}
-              color="blue"
-              icon='plus'
-            />
 
           </Button.Group>
 
@@ -97,17 +115,19 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    saveTool: (tool_id) => {
-      dispatch(saveTool(tool_id))
+    saveTool: (payload) => {
+      dispatch(saveTool(payload))
     },
     upVote: (tool_id) => {
       dispatch(voteTool(tool_id, 1))
     },
     downVote: (tool_id) => {
       dispatch(voteTool(tool_id, -1))
+    },
+    removeSavedTool: (tool_id) => {
+      dispatch(removeSavedTool(tool_id))
     }
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToolCard)

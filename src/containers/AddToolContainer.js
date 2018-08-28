@@ -5,6 +5,7 @@ import TagDropdown from '../components/TagDropdown'
 import { loader } from '../HOCs/loader'
 import { Form, Container } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
+// import withAuth from '../HOCs/withAuth'
 
 class AddToolContainer extends Component {
   state = {

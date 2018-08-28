@@ -41,17 +41,18 @@ export function addTool(tool){
   return (dispatch) => {
     Adapter.addTool(tool)
       .then(result => {
-        debugger
         alert(`Added ${result.name}!`)
+        // need to figure out what to do after this.
       })
   }
 }
 
-export function saveTool(tool_id){
+export function saveTool(payload){
 
   return (dispatch) => {
-    Adapter.saveTool(tool_id)
+    Adapter.saveTool(payload)
       .then(result => {
+        debugger
         alert(`Added ${result.name}!`)
       })
   }
@@ -63,6 +64,16 @@ export function voteTool(tool_id, upDown){
     Adapter.voteTool(tool_id, upDown)
       .then(result => {
         alert(`Upvoted ${result.name}`)
+      })
+  }
+}
+
+export function removeSavedTool(payload){
+
+  return (dispatch) => {
+    Adapter.removeSavedTool(payload)
+      .then(result => {
+        alert(`${result.name} removed from saved tools.`)
       })
   }
 }

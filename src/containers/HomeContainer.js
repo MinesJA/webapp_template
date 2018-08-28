@@ -3,22 +3,24 @@ import HeaderContainer from './HeaderContainer'
 import BodyContainer from './BodyContainer'
 import { connect } from 'react-redux'
 import { loader } from '../HOCs/loader'
-import { fetchTags } from '../actions/toolsActions'
-
-
+// import withAuth from '../HOCs/withAuth'
 
 class HomeContainer extends Component {
 
-
   render() {
-    console.log("Currently in environment: ", process.env.REACT_APP_ENVIRONMENT)
     return (
       <div>
         <HeaderContainer />
-        <BodyContainer />
+        <BodyContainer tools={this.props.tools} home/>
       </div>
     );
   }
 }
 
-export default loader(HomeContainer);
+function mapStateToProps(state){
+  return {
+    tools: state.Tools.tools
+  }
+}
+
+export default connect(mapStateToProps)(HomeContainer);

@@ -23,6 +23,8 @@ class App extends Component {
     if(!!params){
       localStorage.setItem('token', params.token)
       this.props.setCurrentUser()
+    } else if (localStorage.token !== undefined){
+      this.props.setCurrentUser()
     }
 
   }
@@ -33,7 +35,7 @@ class App extends Component {
         <NavBar />
         <Route path="/" exact component={HomeContainer} />
         <Route exact path="/tools/new" component={AddToolContainer} render />
-        <Route exact path="/tools" component={SavedTools} />
+        {this.props.isAuthenticated ? <Route exact path="/tools" component={SavedTools} /> : null}
         <Route exact path="/login" component={UserLogin} />
       </div>
     );
