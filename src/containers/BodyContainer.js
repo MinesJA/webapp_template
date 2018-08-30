@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
-import { Grid} from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import ToolCard from '../components/ToolCard'
 
+const BodyContainer = (props) => {
 
-class BodyContainer extends Component{
-
-  renderTools = () => {
-    return this.props.tools.map((tool, index)=>(
-      <ToolCard key={`toolCard-${index}`} tool={tool} saved={this.props.saved}/>
+  const renderTools = () => {
+    return props.tools.map((tool, index)=>(
+      <ToolCard key={`toolCard-${index}`} tool={tool} saved={props.saved}/>
     ))
   }
 
-  render() {
-    return(
-      <Grid stackable centered style={{padding: "15px"}}>
-          {this.renderTools()}
-      </Grid>
-    )
-  }
+  return(
+    <Grid stackable centered style={{padding: "15px"}}>
+        {renderTools()}
+    </Grid>
+  )
 }
-
-
-
 
 
 export default BodyContainer;

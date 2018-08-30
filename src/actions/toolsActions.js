@@ -52,7 +52,6 @@ export function saveTool(payload){
   return (dispatch) => {
     Adapter.saveTool(payload)
       .then(result => {
-        debugger
         alert(`Added ${result.name}!`)
       })
   }

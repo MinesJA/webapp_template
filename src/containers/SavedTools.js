@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import BodyContainer from './BodyContainer'
 import { connect } from 'react-redux'
-// import withAuth from '../HOCs/withAuth'
+import withAuth from '../HOCs/withAuth'
+import loader from '../HOCs/loader'
+import HeaderContainer from './HeaderContainer'
 
 class SavedTools extends Component {
 
   render(){
     return(
-      <BodyContainer tools={this.props.currentUser.tools} saved/>
+      <div>
+        <HeaderContainer savedTools/>
+        <BodyContainer tools={this.props.currentUser.tools} saved/>
+      </div>
     )
   }
 }
@@ -19,4 +24,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps)(SavedTools);
+export default loader(withAuth(connect(mapStateToProps)(SavedTools)));

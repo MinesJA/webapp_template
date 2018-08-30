@@ -5,7 +5,6 @@ import TagDropdown from '../components/TagDropdown'
 import { loader } from '../HOCs/loader'
 import { Form, Container } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
-// import withAuth from '../HOCs/withAuth'
 
 class AddToolContainer extends Component {
   state = {
@@ -59,11 +58,8 @@ class AddToolContainer extends Component {
 
 
 function mapStateToProps(state){
-  return {
-    currentUser: state.Users.currentUser
-  }
+  return {currentUser: state.Users.currentUser}
 }
-
 
 function mapDispatchToProps(dispatch){
   return{
@@ -73,4 +69,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(loader(AddToolContainer)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddToolContainer));

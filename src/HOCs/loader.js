@@ -1,9 +1,8 @@
 import React from 'react'
 
-export function loader(component){
+ export function loader(component){
+  return class Loader extends React.Component{
 
-  return class BeefComponent extends React.Component{
-    
     render(){
       const Component = component
       return (
@@ -13,3 +12,5 @@ export function loader(component){
 
   }
 }
+
+export default loader

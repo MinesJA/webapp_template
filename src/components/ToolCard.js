@@ -5,7 +5,7 @@ import { saveTool, voteTool, removeSavedTool } from '../actions/toolsActions'
 
 
 const ToolCard = (props) => {
-  let { isAuthenticated, tool, currentUser, saved, removeSavedTool } = props
+  let { isAuthenticated, tool, currentUser, saved, removeSavedTool, saveTool } = props
   let { id, name, description, url, upvotes, downvotes, saves, author, tags } = tool
 
 
@@ -15,19 +15,21 @@ const ToolCard = (props) => {
     ))
   )
 
-  const handleClick = (e) => {
-
+  const handleClick = ({target}) => {
 
     if(isAuthenticated){
       let payload;
 
-      switch(e.target.value){
+      switch(target.value || target.parentElement.value){
         case "save":
           payload = {tool_id: id, user_id: currentUser.id}
-          props.saveTool(payload)
+          saveTool(payload)
+
           break;
         case "upvote":
           // props.upVote()
+
+
           break;
         case "downvote":
           // props.downVote()

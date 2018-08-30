@@ -34,8 +34,8 @@ class App extends Component {
       <div>
         <NavBar />
         <Route path="/" exact component={HomeContainer} />
-        <Route exact path="/tools/new" component={AddToolContainer} render />
-        {this.props.isAuthenticated ? <Route exact path="/tools" component={SavedTools} /> : null}
+        <Route exact path="/tools/new" component={AddToolContainer} />
+        <Route exact path="/tools" component={SavedTools} />
         <Route exact path="/login" component={UserLogin} />
       </div>
     );

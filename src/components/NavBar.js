@@ -14,7 +14,7 @@ class NavBar extends Component {
     if(this.props.isAuthenticated){
       return(
         <Menu.Menu position="right">
-          <Menu.Item><img src={this.props.currentUser.avatar_url}/></Menu.Item>
+          <Menu.Item><img src={this.props.currentUser.avatar_url} alt='profile'/></Menu.Item>
           <Menu.Item name='logout' as={NavLink} exact to="/" onClick={this.props.logout} />
         </Menu.Menu>
       )
@@ -28,7 +28,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { isAuthenticated, currentUser } = this.props;
+    const { isAuthenticated } = this.props;
     const { activeItem } = this.state
 
     return (

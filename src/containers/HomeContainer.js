@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import HeaderContainer from './HeaderContainer'
 import BodyContainer from './BodyContainer'
 import { connect } from 'react-redux'
-import { loader } from '../HOCs/loader'
 // import withAuth from '../HOCs/withAuth'
 
 class HomeContainer extends Component {

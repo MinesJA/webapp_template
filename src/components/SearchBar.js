@@ -15,13 +15,13 @@ class SearchBar extends Component {
   setTags = (tags) => {
     this.setState({
       filterTags: tags
-    }, ()=>{console.log(this.state.filterTags)})
+    })
   }
 
   handleChange = (e, { value }) => {
     this.setState({
       searchTerm: value
-    }, ()=>{console.log(this.state.searchTerm)})
+    })
   }
 
   render(){

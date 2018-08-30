@@ -1,49 +1,34 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-
+import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
+import * as actions from "../actions/usersActions";
+import { Loader } from "semantic-ui-react";
 
 const withAuth = WrappedComponent => {
-  class AuthedComponent extends React.component {
-    state = {
-      authCompleted: this.props.loggedIn
-    }
+  class AuthorizedComponent extends React.Component {
 
-    componentDidMount(){
-      if(localStorage.getItem('token')){
-        this.props.fetchUser();
-      }else{
-        this.setState({authCompleted: true});
+    componentDidMount() {
+      if (localStorage.getItem("token") && !this.props.loggedIn) {
+        this.props.setCurrentUser();
       }
     }
 
-    componentWillReceiveProps(nextProps){
-      if(nextProps.loggedIn){
-        this.setState({authCompleted: true});
-      }
-    }
-
-    render(){
-      if(this.state.authCompleted){
-        return this.props.loggedIn ? (
-          <WrappedComponent {...this.props} />
-        ) : (
-          <Redirect to="/" />
-        );
+    render() {
+      if (localStorage.getItem("token") && this.props.loggedIn) {
+        return <WrappedComponent />;
+      } else if (localStorage.getItem("token") && !this.props.loggedIn) {
+        return <Loader active inline="centered" />;
       } else {
-        return null;
+        return <Redirect to="/" />;
       }
     }
-
   }
 
-  const mapStateToProps = state => ({
-    loggedIn: !!state.auth.currentUser.id
-  });
+  return connect(mapStateToProps, actions)(AuthorizedComponent);
+};
 
 
-  return connect(mapStateToProps, actions)(AuthedComponent);
-}
 
+const mapStateToProps = state => ({ loggedIn: state.Users.isAuthenticated });
 
 export default withAuth;
