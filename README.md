@@ -4,7 +4,7 @@ A site for developers to share, rate, find, and save tools useful for developmen
 
 ## Getting Started
 
-Deployed site coming soon!
+* [Visit Site](https://tools-of-trade.herokuapp.com/)
 
 * [Backend Repo](https://github.com/MinesJA/tools_of_trade_backend)
 
