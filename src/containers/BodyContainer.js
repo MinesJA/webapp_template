@@ -4,15 +4,15 @@ import ToolCard from '../components/ToolCard'
 
 const BodyContainer = (props) => {
 
-  const renderTools = () => {
-    return props.tools.map((tool, index)=>(
-      <ToolCard key={`toolCard-${index}`} tool={tool} saved={props.saved}/>
-    ))
-  }
+  // const renderTools = () => (
+  //
+  // )
 
   return(
     <Grid stackable centered style={{padding: "15px"}}>
-        {renderTools()}
+        {props.tools.map((tool, index)=>(
+          <ToolCard key={`toolCard-${index}`} tool={tool} saved={props.saved}/>
+        ))}
     </Grid>
   )
 }

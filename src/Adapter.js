@@ -42,7 +42,13 @@ export default class Adapter{
     }
 
     return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${author_id}/tools/`, options)
-      .then(resp => resp.json())
+      .then(response => {
+        if(!response.ok){
+          debugger
+          throw Error(response.statusText);
+        }
+        return response.json()
+      })
   }
 
   static saveTool({tool_id, user_id}){
@@ -56,8 +62,14 @@ export default class Adapter{
       body: JSON.stringify({id: tool_id})
     }
 
-    return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${user_id}/tools/${tool_id}`, options)
-      .then(resp => resp.json())
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${user_id}/tools/${tool_id}/save`, options)
+      .then(response => {
+        if(!response.ok){
+          debugger
+          throw Error(response.statusText);
+        }
+        return response.json()
+        })
   }
 
   static voteTool(tool_id, upDown){

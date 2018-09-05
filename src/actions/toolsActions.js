@@ -3,7 +3,7 @@ export const ADD_TOOL = 'ADD_TOOL'
 export const TOOLS_LOADING = 'TOOLS_LOADING'
 export const FETCH_TAGS = 'FETCH_TAGS'
 export const FETCH_TOOLS = 'FETCH_TOOLS'
-
+export const SAVE_TOOL = 'SAVE_TOOL'
 
 export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
   let { filterTags, searchTerm } = searchObject
@@ -48,11 +48,15 @@ export function addTool(tool){
 }
 
 export function saveTool(payload){
-  console.log("Hit SaveTool action: ", payload)
+
   return (dispatch) => {
     Adapter.saveTool(payload)
       .then(result => {
-        alert(`Added ${result.name}!`)
+        dispatch({type: SAVE_TOOL, payload: result.tool.id})
+        alert(`Added ${result.tool.name}!`)
+      })
+      .catch((err)=>{
+        alert(err)
       })
   }
 }

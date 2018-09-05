@@ -8,7 +8,6 @@ const ToolCard = (props) => {
   let { isAuthenticated, tool, currentUser, saved, removeSavedTool, saveTool } = props
   let { id, name, description, url, upvotes, downvotes, saves, author, tags } = tool
 
-
   const renderTags = () => (
     tags.map ((tag, index)=>(
       <Label as='a' size='small' key={`${name}-tag-${index}`}>{tag.name}</Label>
@@ -18,25 +17,18 @@ const ToolCard = (props) => {
   const handleClick = ({target}) => {
 
     if(isAuthenticated){
-      let payload;
-
       switch(target.value || target.parentElement.value){
         case "save":
-          payload = {tool_id: id, user_id: currentUser.id}
-          saveTool(payload)
+          saveTool({tool_id: id, user_id: currentUser.id})
           break;
         case "upvote":
           // props.upVote()
-
           break;
         case "downvote":
           // props.downVote()
           break;
         case "remove":
-          payload = {tool_id: id, user_id: currentUser.id};
-          removeSavedTool(payload)
-
-          console.log("Remove")
+          removeSavedTool({tool_id: id, user_id: currentUser.id})
           break;
         default:
           console.log("Nothing clicked")
@@ -93,17 +85,13 @@ const ToolCard = (props) => {
         <Card.Content extra>
           <Icon name='user' floated='left' />
             Posted By: {author.name}
-
           <br/>
-
           {renderTags()}
-
         </Card.Content>
 
       </Card>
       <Message attached='bottom' warning>
-        <Icon name='help' />
-        Already signed up?&nbsp;<a href='#'>Login here</a>&nbsp;instead.
+        You must be logged into save or vote
       </Message>
     </div>
   )

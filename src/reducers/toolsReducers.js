@@ -1,4 +1,4 @@
-import { ADD_TOOL, TOOLS_LOADING, FETCH_TAGS, FETCH_TOOLS} from '../actions/toolsActions'
+import { ADD_TOOL, TOOLS_LOADING, FETCH_TAGS, FETCH_TOOLS, SAVE_TOOL } from '../actions/toolsActions'
 
 
 const initialState = {toolLoading: false, tools: [], tags: []}
@@ -18,6 +18,15 @@ export default function Tools(state = initialState, action) {
 
     case FETCH_TAGS:
       return Object.assign({}, state, {tags: action.payload, toolLoading: false})
+
+    case SAVE_TOOL:
+      let index = state.tools.findIndex(item=>item.id == action.payload)
+      let newItem = Object.assign({}, state.tools[index])
+      let copyArray = [...state.tools]
+      newItem.saves++
+      copyArray.splice(index, 1, newItem)
+
+      return Object.assign({}, state, {tools: copyArray})
 
     default:
       return {...state}
