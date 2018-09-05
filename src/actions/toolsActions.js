@@ -48,7 +48,7 @@ export function addTool(tool){
 }
 
 export function saveTool(payload){
-
+  console.log("Hit SaveTool action: ", payload)
   return (dispatch) => {
     Adapter.saveTool(payload)
       .then(result => {

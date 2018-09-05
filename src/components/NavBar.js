@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/usersActions';
 
 class NavBar extends Component {
-  state = { activeItem: 'home' }
+  state = {
+    activeItem: 'home',
+    authorizeUrl: 'https://github.com/login/oauth/authorize',
+    clientId: '573e899f8b478c26ac79',
+    scope: 'user'
+    }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 
   renderLoginMenu = () => {
+
     if(this.props.isAuthenticated){
       return(
         <Menu.Menu position="right">
@@ -19,9 +25,10 @@ class NavBar extends Component {
         </Menu.Menu>
       )
     }else{
+      let { authorizeUrl, clientId, scope } = this.state
       return(
         <Menu.Menu position="right">
-          <Menu.Item name='login' as={NavLink} exact to="/login" onClick={this.handleItemClick} />
+          <Button type='click' value="github" href={`${authorizeUrl}?client_id=${clientId}&scope=${scope}`}>Login with Github</Button>
         </Menu.Menu>
       )
     }

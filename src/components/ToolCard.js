@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Image, Label, Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Label, Button, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { saveTool, voteTool, removeSavedTool } from '../actions/toolsActions'
 
@@ -24,11 +24,9 @@ const ToolCard = (props) => {
         case "save":
           payload = {tool_id: id, user_id: currentUser.id}
           saveTool(payload)
-
           break;
         case "upvote":
           // props.upVote()
-
 
           break;
         case "downvote":
@@ -51,60 +49,63 @@ const ToolCard = (props) => {
 
 
   return(
-    <Card style={{margin:"10px"}}>
-      <Image src={window.location.origin + '/images/Square.jpg'} height={100}/>
-      <Card.Content>
-        <Card.Header as='h1'> <a href={url}> {name} </a> </Card.Header>
-        <Card.Meta>
+    <div>
+      <Card style={{margin:"10px"}}>
+        <Image src={window.location.origin + '/images/Square.jpg'} height={100}/>
+        <Card.Content>
+          <Card.Header as='h1'> <a href={url}> {name} </a> </Card.Header>
+          <Card.Meta>
 
-          <Button.Group size="tiny" onClick={handleClick}>
-            <Button
-              value='upvote'
-              content={upvotes}
-              color="green"
-              icon='thumbs up'
-            />
-            <Button
-              value='downvote'
-              content={downvotes}
-              color="red"
-              icon='thumbs down'
-            />
-            {!!saved ?
+            <Button.Group size="tiny" onClick={handleClick}>
               <Button
-                value='remove'
-                color="blue"
-                icon='minus'
+                value='upvote'
+                content={upvotes}
+                color="green"
+                icon='thumbs up'
               />
-              :
               <Button
-                value='save'
-                content={saves}
-                color="blue"
-                icon='plus'
+                value='downvote'
+                content={downvotes}
+                color="red"
+                icon='thumbs down'
               />
-            }
+              {!!saved ?
+                <Button
+                  value='remove'
+                  color="blue"
+                  icon='minus'
+                />
+                :
+                <Button
+                  value='save'
+                  content={saves}
+                  color="blue"
+                  icon='plus'
+                />
+              }
+            </Button.Group>
 
+          </Card.Meta>
+          <Card.Description>{description}</Card.Description>
 
-          </Button.Group>
+        </Card.Content>
 
+        <Card.Content extra>
+          <Icon name='user' floated='left' />
+            Posted By: {author.name}
 
+          <br/>
 
-        </Card.Meta>
-        <Card.Description>{description}</Card.Description>
+          {renderTags()}
 
-      </Card.Content>
+        </Card.Content>
 
-      <Card.Content extra>
-        <Icon name='user' floated='left' />
-          Posted By: {author.name}
-
-        <br/>
-
-        {renderTags()}
-
-      </Card.Content>
-    </Card>
+      </Card>
+      <Message attached='bottom' warning>
+        <Icon name='help' />
+        Already signed up?&nbsp;<a href='#'>Login here</a>&nbsp;instead.
+      </Message>
+    </div>
   )
 }
 
