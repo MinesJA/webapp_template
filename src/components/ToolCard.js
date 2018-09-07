@@ -90,9 +90,7 @@ const ToolCard = (props) => {
         </Card.Content>
 
       </Card>
-      <Message attached='bottom' warning>
-        You must be logged into save or vote
-      </Message>
+      
     </div>
   )
 }
