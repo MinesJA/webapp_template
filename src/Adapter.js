@@ -1,4 +1,3 @@
-
 const getToken = () => (localStorage.getItem('token'));
 
 
@@ -15,7 +14,7 @@ export default class Adapter{
   }
 
   static fetchTools(filterTags, searchTerm){
-    return fetch(`${process.env.REACT_APP_BACKEND_API}/tools?tags=${filterTags}&searchTerm=${searchTerm}`)
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/tools?tags=${filterTags}&search_term=${searchTerm}`)
       .then(resp => resp.json())
   }
 
@@ -65,8 +64,7 @@ export default class Adapter{
     return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${user_id}/tools/${tool_id}/save`, options)
       .then(response => {
         if(!response.ok){
-          debugger
-          throw Error(response.statusText);
+          throw Error(response);
         }
         return response.json()
         })

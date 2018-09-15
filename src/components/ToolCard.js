@@ -1,11 +1,11 @@
 import React from 'react'
 import { Card, Icon, Image, Label, Button, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { saveTool, voteTool, removeSavedTool } from '../actions/toolsActions'
+import { saveTool, voteTool, removeSavedTool, addError } from '../actions/toolsActions'
 
 
 const ToolCard = (props) => {
-  let { isAuthenticated, tool, currentUser, saved, removeSavedTool, saveTool } = props
+  let { isAuthenticated, tool, currentUser, saved, removeSavedTool, saveTool, addError } = props
   let { id, name, description, url, upvotes, downvotes, saves, author, tags } = tool
 
   const renderTags = () => (
@@ -34,7 +34,7 @@ const ToolCard = (props) => {
           console.log("Nothing clicked")
       }
     } else {
-      alert("You must be signed in to vote or save")
+      addError(["You are not signed in.", "You must be signed into vote or save."])
     }
   }
 
@@ -88,9 +88,8 @@ const ToolCard = (props) => {
           <br/>
           {renderTags()}
         </Card.Content>
-
       </Card>
-      
+
     </div>
   )
 }
@@ -115,6 +114,9 @@ function mapDispatchToProps(dispatch){
     },
     removeSavedTool: (tool_id) => {
       dispatch(removeSavedTool(tool_id))
+    },
+    addError: (errorsArray) => {
+      dispatch(addError(errorsArray))
     }
   }
 }

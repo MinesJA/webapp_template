@@ -1,7 +1,7 @@
-import { ADD_TOOL, TOOLS_LOADING, FETCH_TAGS, FETCH_TOOLS, SAVE_TOOL } from '../actions/toolsActions'
+import { ADD_TOOL, TOOLS_LOADING, FETCH_TAGS, FETCH_TOOLS, SAVE_TOOL, ADD_ERROR, ADD_SUCCESS } from '../actions/toolsActions'
 
 
-const initialState = {toolLoading: false, tools: [], tags: []}
+const initialState = {toolLoading: false, tools: [], tags: [], errors: []}
 
 
 export default function Tools(state = initialState, action) {
@@ -27,6 +27,12 @@ export default function Tools(state = initialState, action) {
       copyArray.splice(index, 1, newItem)
 
       return Object.assign({}, state, {tools: copyArray})
+
+    case ADD_ERROR:
+      return Object.assign({}, state, {errors: action.payload})
+
+    case ADD_SUCCESS:
+      return Object.assign({}, state, {success: action.payload})
 
     default:
       return {...state}

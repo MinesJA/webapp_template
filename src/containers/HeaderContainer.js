@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import SearchBar from '../components/SearchBar'
-import { Segment, Header, Icon } from 'semantic-ui-react'
+import SearchBar from '../components/SearchBar';
+import { Segment, Header, Icon, Message } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 const HeaderContainer = (props) => (
   <Segment vertical textAlign='center'>
@@ -16,18 +17,30 @@ const HeaderContainer = (props) => (
         <Segment basic>
           <Header as='h1' color='blue'>My Saved Tools</Header>
         </Segment>
-        
       </Fragment>
         :
       <Fragment>
         <Segment basic />
         <SearchBar />
+        {props.errors.length > 0 ?
+          <Message negative>
+            <Message.Header>{props.errors[0]}</Message.Header>
+            <p>{props.errors[1]}</p>
+          </Message>
+          :
+          null
+        }
         <Segment basic />
       </Fragment>}
-
-
 
   </Segment>
 )
 
-export default HeaderContainer
+
+function mapStateToProps(state){
+  return{
+    errors: state.Tools.errors
+  }
+}
+
+export default connect(mapStateToProps)(HeaderContainer)

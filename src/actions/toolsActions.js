@@ -4,6 +4,8 @@ export const TOOLS_LOADING = 'TOOLS_LOADING'
 export const FETCH_TAGS = 'FETCH_TAGS'
 export const FETCH_TOOLS = 'FETCH_TOOLS'
 export const SAVE_TOOL = 'SAVE_TOOL'
+export const ADD_ERROR = 'ADD_ERROR'
+export const ADD_SUCCESS = 'ADD_SUCCESS'
 
 export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
   let { filterTags, searchTerm } = searchObject
@@ -57,11 +59,16 @@ export function saveTool(payload){
   return (dispatch) => {
     Adapter.saveTool(payload)
       .then(result => {
+
         dispatch({type: SAVE_TOOL, payload: result.tool.id})
         alert(`Added ${result.tool.name}!`)
       })
       .catch((err)=>{
-        alert(err)
+        // addError(["You've already saved that tool.", "You can only save a tool once."])
+        dispatch({type: ADD_ERROR, payload: ["You've already saved that tool.", "You can only save a tool once."]})
+        setTimeout(function(){
+          dispatch({type: ADD_ERROR, payload: []})
+        }, 2000);
       })
   }
 }
@@ -79,10 +86,32 @@ export function voteTool(tool_id, upDown){
 export function removeSavedTool(payload){
 
   return (dispatch) => {
+
     Adapter.removeSavedTool(payload)
       .then(result => {
+        debugger
         alert(`${result.name} removed from saved tools.`)
       })
+  }
+}
+
+export function addError(payload){
+
+  return (dispatch) => {
+    dispatch({type: ADD_ERROR, payload: payload})
+    setTimeout(function(){
+      dispatch({type: ADD_ERROR, payload: []})
+    }, 2000);
+  }
+}
+
+export function addSuccess(payload){
+
+  return (dispatch) => {
+    dispatch({type: ADD_SUCCESS, payload: payload})
+    setTimeout(function(){
+      dispatch({type: ADD_SUCCESS, payload: []})
+    }, 2000);
   }
 }
 
