@@ -28,9 +28,14 @@ export function fetchTags(){
 
     Adapter.fetchTags()
       .then(result => {
+
+        let tagObjects = result.map((tag)=>{
+          return {"id": tag.id, "key": tag.name, "text": tag.name, "value": tag.name.replace(/ /g,"_")}
+        })
+
         dispatch({
           type: FETCH_TAGS,
-          payload: result
+          payload: tagObjects
         })
       })
   }

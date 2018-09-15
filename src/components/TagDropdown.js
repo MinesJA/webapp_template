@@ -11,23 +11,6 @@ class TagDropdown extends Component {
     selectedTags: [],
   }
 
-  componentDidMount = () => {
-    fetch('https://tools-of-trade-api.herokuapp.com/api/v1/tags')
-      .then(resp => resp.json())
-      .then(result => {
-
-        let tagOptions = result.map((tag)=>{
-          return this.formatTagObject(tag.name)
-        })
-
-        this.setState({tagOptions})
-      })
-  }
-
-  formatTagObject = (tagName) => {
-    return {"key": tagName, "text": tagName, "value": tagName.replace(/ /g,"_")}
-  }
-
   handleAddition = (e, { value }) => {
     let newTagObject = this.formatTagObject(value)
 
@@ -41,7 +24,6 @@ class TagDropdown extends Component {
     this.setState({
       selectedTags: value
     }, ()=>{
-      console.log(this.state.selectedTags)
       this.props.setTags(this.state.selectedTags)
     })
   }
@@ -59,7 +41,7 @@ class TagDropdown extends Component {
         allowAdditions={this.props.allowAdditions}
         multiple={true}
         search={true}
-        options={this.state.tagOptions}
+        options={this.props.tags}
         value={this.state.selectedTags}
         placeholder='Add tags'
         onChange={this.handleChange}
@@ -69,7 +51,6 @@ class TagDropdown extends Component {
     )
   }
 }
-
 
 
 function mapStateToProps(state){
