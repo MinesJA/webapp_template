@@ -3,41 +3,38 @@ const getToken = () => (localStorage.getItem('token'));
 
 export default class Adapter{
 
+  static errorHandling(response){
+    if(!response.ok){
+      switch(response.status){
+        case 500:
+          throw {status: 500, message: "Could not get a response from the server"}
+        break;
+        default:
+          debugger
+      }
+    }else{
+      return response.json()
+    }
+  }
+
   static fetchCurrentUser(options){
     return fetch(`${process.env.REACT_APP_BACKEND_API}/current_user`, {headers: {Authorization: getToken()}})
-      .then(resp => resp.json())
-      .catch((error)=>{
-        debugger
-      })
+      .then(response => Adapter.errorHandling(response) )
   }
 
   static fetchUser(user_id){
     return fetch(`${process.env.REACT_APP_BACKEND_API}/user/${user_id}`)
-      .then(resp => resp.json())
-      .catch((error)=>{
-        debugger
-      })
+      .then(response => Adapter.errorHandling(response) )
   }
 
   static fetchTools(filterTags, searchTerm){
     return fetch(`${process.env.REACT_APP_BACKEND_API}/tools?tags=${filterTags}&search_term=${searchTerm}`)
-      .then(response => {
-        if(!response.ok){
-          throw Error(response.statusText);
-        }
-        return response.json()
-        })
-        .catch((error)=>{
-          debugger
-        })
+      .then(response => Adapter.errorHandling(response) )
   }
 
   static fetchTags(){
     return fetch(`${process.env.REACT_APP_BACKEND_API}/tags`)
-      .then(resp => resp.json())
-      .catch((error)=>{
-        debugger
-      })
+    .then(response => Adapter.errorHandling(response) )
   }
 
   static addTool({author_id, name, description, url, tags}){
@@ -58,15 +55,7 @@ export default class Adapter{
     }
 
     return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${author_id}/tools/`, options)
-      .then(response => {
-        if(!response.ok){
-          throw Error(response.statusText);
-        }
-        return response.json()
-      })
-      .catch((error)=>{
-        debugger
-      })
+      .then(response => Adapter.errorHandling(response) )
   }
 
   static saveTool({tool_id, user_id}){
@@ -81,15 +70,7 @@ export default class Adapter{
     }
 
     return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${user_id}/tools/${tool_id}/save`, options)
-      .then(response => {
-        if(!response.ok){
-          throw Error(response);
-        }
-        return response.json()
-        })
-        .catch((error)=>{
-          debugger
-        })
+      .then(response => Adapter.errorHandling(response) )
   }
 
   static voteTool(tool_id, upDown){
@@ -105,10 +86,7 @@ export default class Adapter{
     }
 
     return fetch(`${process.env.REACT_APP_BACKEND_API}/tool/${tool_id}`, options)
-      .then(resp => resp.json())
-      .catch((error)=>{
-        debugger
-      })
+      .then(response => Adapter.errorHandling(response) )
   }
 
   static removeSavedTool({tool_id, user_id}){
@@ -122,10 +100,7 @@ export default class Adapter{
     }
 
     return fetch(`${process.env.REACT_APP_BACKEND_API}/users/${user_id}/tools/${tool_id}`, options)
-      .then(resp => resp.json())
-      .catch((error)=>{
-        debugger
-      })
+      .then(response => Adapter.errorHandling(response) )
   }
 
 

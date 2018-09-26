@@ -21,7 +21,10 @@ export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
         })
       })
       .catch((error)=>{
-        debugger
+        dispatch({
+          type: ADD_ERROR,
+          payload: error
+        })
       })
   }
 }
@@ -45,6 +48,10 @@ export function fetchTags(){
       })
       .catch((error)=>{
         debugger
+        dispatch({
+          type: ADD_ERROR,
+          payload: error.message
+        })
       })
   }
 }
