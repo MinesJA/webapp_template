@@ -20,6 +20,9 @@ export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
           payload: result
         })
       })
+      .catch((error)=>{
+        debugger
+      })
   }
 }
 
@@ -40,6 +43,9 @@ export function fetchTags(){
           payload: tagObjects
         })
       })
+      .catch((error)=>{
+        debugger
+      })
   }
 }
 
@@ -50,6 +56,9 @@ export function addTool(tool){
       .then(result => {
         alert(`Added ${result.name}!`)
         // need to figure out what to do after this.
+      })
+      .catch((error)=>{
+        debugger
       })
   }
 }
@@ -64,11 +73,12 @@ export function saveTool(payload){
         alert(`Added ${result.tool.name}!`)
       })
       .catch((err)=>{
-        // addError(["You've already saved that tool.", "You can only save a tool once."])
         dispatch({type: ADD_ERROR, payload: ["You've already saved that tool.", "You can only save a tool once."]})
+
         setTimeout(function(){
           dispatch({type: ADD_ERROR, payload: []})
         }, 2000);
+
       })
   }
 }
@@ -80,6 +90,9 @@ export function voteTool(tool_id, upDown){
       .then(result => {
         alert(`Upvoted ${result.name}`)
       })
+      .catch((error)=>{
+        debugger
+      })
   }
 }
 
@@ -89,8 +102,10 @@ export function removeSavedTool(payload){
 
     Adapter.removeSavedTool(payload)
       .then(result => {
-        debugger
         alert(`${result.name} removed from saved tools.`)
+      })
+      .catch((error)=>{
+        debugger
       })
   }
 }
