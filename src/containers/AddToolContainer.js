@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { addTool } from '../actions/toolsActions'
 import TagDropdown from '../components/TagDropdown'
-import { loader } from '../HOCs/loader'
 import { Form, Container } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 

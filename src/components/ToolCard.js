@@ -1,11 +1,11 @@
 import React from 'react'
-import { Card, Icon, Image, Label, Button, Message } from 'semantic-ui-react'
+import { Card, Icon, Image, Label, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { saveTool, voteTool, removeSavedTool, addError } from '../actions/toolsActions'
 
 
 const ToolCard = (props) => {
-  let { isAuthenticated, tool, currentUser, saved, removeSavedTool, saveTool, addError } = props
+  let { isAuthenticated, tool, currentUser, saved, removeSavedTool, saveTool, addError, upVote, downVote } = props
   let { id, name, description, url, upvotes, downvotes, saves, author, tags } = tool
 
   const renderTags = () => (
@@ -22,10 +22,10 @@ const ToolCard = (props) => {
           saveTool({tool_id: id, user_id: currentUser.id})
           break;
         case "upvote":
-          // props.upVote()
+          upVote(id)
           break;
         case "downvote":
-          // props.downVote()
+          downVote(id)
           break;
         case "remove":
           removeSavedTool({tool_id: id, user_id: currentUser.id})
@@ -34,7 +34,7 @@ const ToolCard = (props) => {
           console.log("Nothing clicked")
       }
     } else {
-      addError(["You are not signed in.", "You must be signed into vote or save."])
+      addError({type: 401, message:"You are not signed in. You must be signed into vote or save."})
     }
   }
 

@@ -3,8 +3,10 @@ export const ADD_TOOL = 'ADD_TOOL'
 export const TOOLS_LOADING = 'TOOLS_LOADING'
 export const FETCH_TAGS = 'FETCH_TAGS'
 export const FETCH_TOOLS = 'FETCH_TOOLS'
+export const VOTE_TOOL = 'VOTE_TOOL'
 export const SAVE_TOOL = 'SAVE_TOOL'
 export const ADD_ERROR = 'ADD_ERROR'
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const ADD_SUCCESS = 'ADD_SUCCESS'
 
 export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
@@ -70,7 +72,7 @@ export function addTool(tool){
         })
 
         setTimeout(function(){
-          dispatch({type: ADD_ERROR, payload: []})
+          dispatch({type: CLEAR_ERRORS})
         }, 2000)
       })
   }
@@ -92,7 +94,7 @@ export function saveTool(payload){
         })
 
         setTimeout(function(){
-          dispatch({type: ADD_ERROR, payload: []})
+          dispatch({type: CLEAR_ERRORS})
         }, 2000)
       })
   }
@@ -103,6 +105,7 @@ export function voteTool(tool_id, upDown){
   return (dispatch) => {
     Adapter.voteTool(tool_id, upDown)
       .then(result => {
+        dispatch({type: 'VOTE_TOOL', payload: {tool_id, upDown}})
         alert(`Upvoted ${result.name}`)
       })
       .catch((error)=>{
@@ -112,7 +115,7 @@ export function voteTool(tool_id, upDown){
         })
 
         setTimeout(function(){
-          dispatch({type: ADD_ERROR, payload: []})
+          dispatch({type: CLEAR_ERRORS})
         }, 2000)
       })
   }
@@ -133,7 +136,7 @@ export function removeSavedTool(payload){
         })
 
         setTimeout(function(){
-          dispatch({type: ADD_ERROR, payload: []})
+          dispatch({type: CLEAR_ERRORS})
         }, 2000)
       })
   }
@@ -143,8 +146,9 @@ export function addError(payload){
 
   return (dispatch) => {
     dispatch({type: ADD_ERROR, payload: payload})
+
     setTimeout(function(){
-      dispatch({type: ADD_ERROR, payload: []})
+      dispatch({type: CLEAR_ERRORS})
     }, 2000);
   }
 }
@@ -153,6 +157,7 @@ export function addSuccess(payload){
 
   return (dispatch) => {
     dispatch({type: ADD_SUCCESS, payload: payload})
+
     setTimeout(function(){
       dispatch({type: ADD_SUCCESS, payload: []})
     }, 2000);

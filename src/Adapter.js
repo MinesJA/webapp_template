@@ -15,7 +15,7 @@ export default class Adapter{
         default:
           debugger
       }
-    }else{      
+    }else{
       return response.json()
     }
   }
@@ -85,10 +85,10 @@ export default class Adapter{
          'Content-Type': 'application/json',
          Authorization: getToken()
        },
-      body: JSON.stringify({tool: {upDown}})
+      body: JSON.stringify({upDown})
     }
 
-    return fetch(`${process.env.REACT_APP_BACKEND_API}/tool/${tool_id}`, options)
+    return fetch(`${process.env.REACT_APP_BACKEND_API}/tools/${tool_id}`, options)
       .then(response => Adapter.errorHandling(response) )
   }
 

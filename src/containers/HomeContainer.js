@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import HeaderContainer from './HeaderContainer'
 import BodyContainer from './BodyContainer'
 import { connect } from 'react-redux'
-import loader from '../HOCs/loader'
-// import withAuth from '../HOCs/withAuth'
 
-// const BodyWithLoader = loader(List);
 
 class HomeContainer extends Component {
 
-
   render() {
-    console.log(this.props.loading)
     return (
       <div>
         <HeaderContainer />
