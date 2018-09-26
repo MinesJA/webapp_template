@@ -47,10 +47,9 @@ export function fetchTags(){
         })
       })
       .catch((error)=>{
-        debugger
         dispatch({
           type: ADD_ERROR,
-          payload: error.message
+          payload: error
         })
       })
   }
@@ -65,7 +64,14 @@ export function addTool(tool){
         // need to figure out what to do after this.
       })
       .catch((error)=>{
-        debugger
+        dispatch({
+          type: ADD_ERROR,
+          payload: error
+        })
+
+        setTimeout(function(){
+          dispatch({type: ADD_ERROR, payload: []})
+        }, 2000)
       })
   }
 }
@@ -79,13 +85,15 @@ export function saveTool(payload){
         dispatch({type: SAVE_TOOL, payload: result.tool.id})
         alert(`Added ${result.tool.name}!`)
       })
-      .catch((err)=>{
-        dispatch({type: ADD_ERROR, payload: ["You've already saved that tool.", "You can only save a tool once."]})
+      .catch((error)=>{
+        dispatch({
+          type: ADD_ERROR,
+          payload: error
+        })
 
         setTimeout(function(){
           dispatch({type: ADD_ERROR, payload: []})
-        }, 2000);
-
+        }, 2000)
       })
   }
 }
@@ -98,7 +106,14 @@ export function voteTool(tool_id, upDown){
         alert(`Upvoted ${result.name}`)
       })
       .catch((error)=>{
-        debugger
+        dispatch({
+          type: ADD_ERROR,
+          payload: error
+        })
+
+        setTimeout(function(){
+          dispatch({type: ADD_ERROR, payload: []})
+        }, 2000)
       })
   }
 }
@@ -112,7 +127,14 @@ export function removeSavedTool(payload){
         alert(`${result.name} removed from saved tools.`)
       })
       .catch((error)=>{
-        debugger
+        dispatch({
+          type: ADD_ERROR,
+          payload: error
+        })
+
+        setTimeout(function(){
+          dispatch({type: ADD_ERROR, payload: []})
+        }, 2000)
       })
   }
 }

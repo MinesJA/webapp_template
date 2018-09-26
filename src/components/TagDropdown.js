@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { loader } from '../HOCs/loader'
 import { addFilterTags } from '../actions/searchActions'
 
 class TagDropdown extends Component {
@@ -68,4 +67,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(loader(TagDropdown));
+export default connect(mapStateToProps, mapDispatchToProps)(TagDropdown);

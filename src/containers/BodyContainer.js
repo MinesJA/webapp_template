@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react'
 import ToolCard from '../components/ToolCard'
+import loader from '../HOCs/loader'
 
 const BodyContainer = (props) => {
 
@@ -14,4 +15,6 @@ const BodyContainer = (props) => {
 }
 
 
-export default BodyContainer;
+
+
+export default loader(BodyContainer);

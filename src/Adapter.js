@@ -8,11 +8,14 @@ export default class Adapter{
       switch(response.status){
         case 500:
           throw {status: 500, message: "Could not get a response from the server"}
+          break;
+        case 406:
+          throw {status: 406, message: "You've already saved that tool. You can only save a tool once."}
         break;
         default:
           debugger
       }
-    }else{
+    }else{      
       return response.json()
     }
   }

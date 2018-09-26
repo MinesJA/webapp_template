@@ -8,7 +8,7 @@ export default function Tools(state = initialState, action) {
   switch(action.type) {
 
     case TOOLS_LOADING:
-      return Object.assign({}, state, {loading: true})
+      return Object.assign({}, state, {toolLoading: true})
 
     case ADD_TOOL:
       return Object.assign({}, state, {tools: [...state, action.payload]})

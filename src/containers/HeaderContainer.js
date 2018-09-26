@@ -4,37 +4,34 @@ import { Segment, Header, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 const HeaderContainer = (props) => (
-  <Segment vertical textAlign='center'>
-    <Header icon>
-      <Icon name='setting' />
-      <Header.Content className='logo'>
-         Tools of the Trade
-      </Header.Content>
-    </Header>
+    <Segment vertical textAlign='center'>
+      <Header icon>
+        <Icon name='setting' />
+        <Header.Content className='logo'>
+           Tools of the Trade
+        </Header.Content>
+      </Header>
 
-    {props.savedTools ?
-      <Fragment>
-        <Segment basic>
-          <Header as='h1' color='blue'>My Saved Tools</Header>
-        </Segment>
-      </Fragment>
-        :
-      <Fragment>
-        <Segment basic />
-        <SearchBar />
-        {props.errors.length > 0 ?
-          <Message negative>
-            <Message.Header>{props.errors[0]}</Message.Header>
-            <p>{props.errors[1]}</p>
-          </Message>
+      {props.savedTools ?
+        <Fragment>
+          <Segment basic>
+            <Header as='h1' color='blue'>My Saved Tools</Header>
+          </Segment>
+        </Fragment>
           :
-          null
-        }
-        <Segment basic />
-      </Fragment>}
+        <Fragment>
+          <Segment basic />
+          <SearchBar />
 
-  </Segment>
-)
+            <Message negative>
+              <Message.Header>{props.errors.message}</Message.Header>
+              <p>{props.errors.message}</p>
+            </Message>
+
+          <Segment basic />
+        </Fragment>}
+    </Segment>
+  )
 
 
 function mapStateToProps(state){
