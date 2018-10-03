@@ -106,7 +106,7 @@ export function voteTool(tool_id, upDown){
     Adapter.voteTool(tool_id, upDown)
       .then(result => {
         dispatch({type: 'VOTE_TOOL', payload: {tool_id, upDown}})
-        alert(`Upvoted ${result.name}`)
+        upDown > 0 ? alert(`Upvoted ${result.name}`) : alert(`Downvoted ${result.name}`)
       })
       .catch((error)=>{
         dispatch({
