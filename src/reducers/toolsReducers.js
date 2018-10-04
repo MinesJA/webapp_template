@@ -1,4 +1,4 @@
-import { ADD_TOOL, TOOLS_LOADING, FETCH_TAGS, FETCH_TOOLS, SAVE_TOOL, VOTE_TOOL, ADD_ERROR, CLEAR_ERRORS, ADD_SUCCESS } from '../actions/toolsActions'
+import { ADD_TOOL, ADD_TAG, TOOLS_LOADING, FETCH_TAGS, FETCH_TOOLS, SAVE_TOOL, VOTE_TOOL, ADD_ERROR, CLEAR_ERRORS, ADD_SUCCESS } from '../actions/toolsActions'
 
 
 const initialState = {toolLoading: false, tools: [], tags: [], errors: []}
@@ -11,7 +11,10 @@ export default function Tools(state = initialState, action) {
       return Object.assign({}, state, {toolLoading: true})
 
     case ADD_TOOL:
-      return Object.assign({}, state, {tools: [...state, action.payload]})
+      return Object.assign({}, state, {tools: [...state.tools, action.payload]})
+
+    case ADD_TAG:
+      return Object.assign({}, state, {tags: [...state.tags, action.payload]})
 
     case FETCH_TOOLS:
       return Object.assign({}, state, {tools: action.payload, toolLoading: false})

@@ -1,5 +1,6 @@
 import Adapter from '../Adapter';
 export const ADD_TOOL = 'ADD_TOOL'
+export const ADD_TAG = 'ADD_TAG'
 export const TOOLS_LOADING = 'TOOLS_LOADING'
 export const FETCH_TAGS = 'FETCH_TAGS'
 export const FETCH_TOOLS = 'FETCH_TOOLS'
@@ -63,7 +64,6 @@ export function addTool(tool){
     Adapter.addTool(tool)
       .then(result => {
         alert(`Added ${result.name}!`)
-        // need to figure out what to do after this.
       })
       .catch((error)=>{
         dispatch({
@@ -139,6 +139,16 @@ export function removeSavedTool(payload){
           dispatch({type: CLEAR_ERRORS})
         }, 2000)
       })
+  }
+}
+
+export function addTag(tag){
+  debugger
+  let tagObject = {"id": tag.id, "key": tag.name, "text": tag.name, "value": tag.name.replace(/ /g,"_")}
+  debugger
+
+  return (dispatch) => {
+    dispatch({type: ADD_TAG, payload: tagObject})
   }
 }
 

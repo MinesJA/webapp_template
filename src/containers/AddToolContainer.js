@@ -31,7 +31,7 @@ class AddToolContainer extends Component {
   setTags = (tags) => {
     this.setState({
       tags
-    })
+    }, ()=>{console.log("AddToolContainer:", this.state)})
   }
 
   render() {
@@ -45,7 +45,7 @@ class AddToolContainer extends Component {
 
           <Form.TextArea label='Description of Tool' name='description' placeholder='React.js is super duper...' onChange={this.handleChange} />
 
-          <TagDropdown setTags={this.setTags} chosenTags={this.state.tags} allowAdditions={true}/>
+          <TagDropdown handleChange={this.handleChange} setTags={this.setTags} chosenTags={this.state.tags} allowAdditions={true}/>
 
           <Form.Button style={{marginTop: "10px"}}>Submit</Form.Button>
 

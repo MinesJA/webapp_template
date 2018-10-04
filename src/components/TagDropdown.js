@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addFilterTags } from '../actions/searchActions'
+import { addTag } from '../actions/toolsActions'
 
 class TagDropdown extends Component {
   state = {
@@ -10,13 +10,22 @@ class TagDropdown extends Component {
     selectedTags: [],
   }
 
-  handleAddition = (e, { value }) => {
-    let newTagObject = this.formatTagObject(value)
+  // formatTagObject = (tagName) => {
+  //   return {"key": tagName, "text": tagName, "value": tagName.replace(/ /g,"_")}
+  // }
 
-    this.setState({
-      tagOptions: [...this.state.tagOptions, newTagObject],
-      selectedTags: [...this.state.selectedTags, value],
-    }, ()=>{this.props.setTags(this.state.selectedTags)})
+  handleAddition = (e, { value }) => {
+    // let newTagObject = this.formatTagObject(value)
+    let id = this.props.tags[this.props.tags.length-1].id + 1
+    let tagObject = {name: value, id: id}
+    this.props.addTag(tagObject)
+    // this.setState({
+    //   tagOptions: [...this.state.tagOptions, newTagObject],
+    //   selectedTags: [...this.state.selectedTags, value],
+    // }, ()=>{
+    //   console.log(this.state.selectedTags)
+    //   this.props.setTags(this.state.selectedTags)
+    // })
   }
 
   handleChange = (e, { value }) => {
@@ -61,8 +70,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    addFilterTags: (tags) => {
-      dispatch(addFilterTags(tags))
+    addTag: (tagObject) => {
+      dispatch(addTag(tagObject))
     }
   }
 }
