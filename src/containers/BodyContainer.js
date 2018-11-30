@@ -4,7 +4,6 @@ import ToolCard from '../components/ToolCard'
 import loader from '../HOCs/loader'
 
 const BodyContainer = (props) => {
-  console.log(props)
   return(
     <Grid stackable centered style={{padding: "15px"}}>
         {props.tools.map((tool, index)=>(
