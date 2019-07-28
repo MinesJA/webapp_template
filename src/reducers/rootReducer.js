@@ -4,7 +4,7 @@ import Tools from './toolsReducers'
 import Search from './searchReducers'
 
 
-const toolsApp = combineReducers({
+const webApp = combineReducers({
   Search,
   Tools,
   Users,

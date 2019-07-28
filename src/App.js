@@ -16,7 +16,6 @@ class App extends Component {
 
   componentDidMount(){
     this.props.fetchTools();
-    this.props.fetchTags();
     const params = Adapter.getQueryParams();
 
     if(!!params){

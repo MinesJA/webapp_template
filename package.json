@@ -1,5 +1,5 @@
 {
-  "name": "tools_of_trade_frontend",
+  "name": "webapp_template",
   "version": "0.1.0",
   "private": true,
   "proxy": {
@@ -20,7 +20,8 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.3.1",
     "semantic-ui-react": "^0.79.0",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "webpack": "^3.11.0"
   },
   "scripts": {
     "start": "react-app-env start",
@@ -30,7 +31,6 @@
   },
   "devDependencies": {
     "react-app-env": "^1.2.2",
-    "webpack": "^4.17.0",
     "webpack-cli": "^3.1.0"
   }
 }
