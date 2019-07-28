@@ -1,10 +1,13 @@
-Tools of the Trade
+WebApp Template
 ===============
-A site for developers to share, rate, find, and save tools useful for development. Share anything from wireframe tools to frameworks to basic gems and packages.
+A template for a generic Web Application using Redux.
 
 ## Getting Started
 
-* [Visit Site](https://tools-of-trade.herokuapp.com/)
+* Swap out development.env and production.env variables for your backend api.
+
+* `npm install`
+* `npm start`
 
 * [Backend Repo](https://github.com/MinesJA/tools_of_trade_backend)
 

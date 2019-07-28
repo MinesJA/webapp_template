@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 // REDUX
-import toolsApp from './reducers/rootReducer'
+import webApp from './reducers/rootReducer'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux'
@@ -23,7 +23,7 @@ WebFont.load({
 });
 
 
-const store = createStore(toolsApp, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(webApp, composeWithDevTools(applyMiddleware(thunk)));
 
 
 ReactDOM.render(

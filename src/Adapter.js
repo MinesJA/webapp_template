@@ -6,12 +6,12 @@ export default class Adapter{
   static errorHandling(response){
     if(!response.ok){
       switch(response.status){
-        case 500:
-          throw {status: 500, message: "Could not get a response from the server"}
-          break;
-        case 406:
-          throw {status: 406, message: "You've already saved that tool. You can only save a tool once."}
+        case 400:
+          throw {status: 400, message: "CLIENT ERROR"}
         break;
+        case 500:
+          throw {status: 500, message: "SERVER ERROR"}
+          break;
         default:
           debugger
       }
