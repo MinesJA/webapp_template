@@ -1,25 +1,22 @@
 import Adapter from '../Adapter';
-export const ADD_TOOL = 'ADD_TOOL'
-export const ADD_TAG = 'ADD_TAG'
-export const TOOLS_LOADING = 'TOOLS_LOADING'
-export const FETCH_TAGS = 'FETCH_TAGS'
-export const FETCH_TOOLS = 'FETCH_TOOLS'
-export const VOTE_TOOL = 'VOTE_TOOL'
-export const SAVE_TOOL = 'SAVE_TOOL'
+export const ITEMS_LOADING = 'ITEMS_LOADING'
+export const ADD_ITEM = 'ADD_ITEM'
+export const FETCH_ITEMS = 'FETCH_ITEMS'
+export const SAVE_TOOL = 'SAVE_ITEM'
 export const ADD_ERROR = 'ADD_ERROR'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const ADD_SUCCESS = 'ADD_SUCCESS'
 
-export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
+export function fetchItems(searchObject = {filterTags: [], searchTerm: ""}){
   let { filterTags, searchTerm } = searchObject
 
   return (dispatch) => {
-    dispatch({type: TOOLS_LOADING})
+    dispatch({type: ITEMS_LOADING})
 
-    Adapter.fetchTools(filterTags, searchTerm)
+    Adapter.fetchTools(searchTerm)
       .then(result => {
         dispatch({
-          type: FETCH_TOOLS,
+          type: FETCH_ITEMS,
           payload: result
         })
       })
@@ -32,33 +29,7 @@ export function fetchTools(searchObject = {filterTags: [], searchTerm: ""}){
   }
 }
 
-export function fetchTags(){
-
-  return (dispatch) => {
-    dispatch({type: TOOLS_LOADING})
-
-    Adapter.fetchTags()
-      .then(result => {
-
-        let tagObjects = result.map((tag)=>{
-          return {"id": tag.id, "key": tag.name, "text": tag.name, "value": tag.name.replace(/ /g,"_")}
-        })
-
-        dispatch({
-          type: FETCH_TAGS,
-          payload: tagObjects
-        })
-      })
-      .catch((error)=>{
-        dispatch({
-          type: ADD_ERROR,
-          payload: error
-        })
-      })
-  }
-}
-
-export function addTool(tool){
+export function addItem(item){
 
   return (dispatch) => {
     Adapter.addTool(tool)

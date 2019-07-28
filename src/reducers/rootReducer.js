@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 import Users from './usersReducers'
-import Tools from './toolsReducers'
+import Items from './itemsReducers'
 import Search from './searchReducers'
 
 
 const webApp = combineReducers({
   Search,
-  Tools,
+  Items,
   Users,
 })
 
 
-export default toolsApp
+export default webApp

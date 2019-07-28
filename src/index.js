@@ -23,7 +23,7 @@ WebFont.load({
 });
 
 
-const store = createStore(toolsApp, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(webApp, composeWithDevTools(applyMiddleware(thunk)));
 
 
 ReactDOM.render(
